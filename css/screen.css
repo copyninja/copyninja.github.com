@@ -158,6 +158,14 @@ ul.posts {
 /*
 /*****************************************************************************/
 
+.posteddate {
+    text-align: right;
+    font-family: BitstreamVeraSerifRoman,sans-serif;
+    font-size: 50%;
+    font-style: italic;
+    font-color: #808080;
+}
+
 #post {
 
 }
@@ -198,7 +206,7 @@ ul.posts {
     background-color: #333;
   }
 
-#related {
+#related { 
   margin-top: 2em;
 }
 
@@ -216,4 +224,12 @@ ul.posts {
     font-size: 170%;
     font-weight: normal;
     padding-left: 2em;
+}
+
+.widget.textwidget {
+    text-align: left
+    font-family: BitstreamVeraSerifRoman,sans-serif;
+    font-size: 170%;
+    font-weight: normal;
+    padding-left: 3em;
 }
