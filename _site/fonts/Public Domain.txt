@@ -1,1 +1,0 @@
-This font, as far as we can tell, is in the public domain.
