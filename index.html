@@ -10,8 +10,10 @@ title: Random Ramblings
   <ul class="posts">
     {% for post in site.posts limit: 4 %}
       {% capture post_date %}{{ post.date | date: "%Y%m%d" }}{% endcapture %}
-      <h1><a class="glyph-permalink" href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">{{ post.title }} </a></h1>
-      {{ post.content }}
+      <div class="postheading"><a class="glyph-permalink" href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">{{ post.title }} </a></div>
+      <div class="postbody">
+        {{ post.content }}
+      </div>
       <div class="posteddate">Posted by: copyninja on {{ post.date | date:"%A, %e %B %Y" }}</div>
     {% if forloop.last == false %}
     <br/>

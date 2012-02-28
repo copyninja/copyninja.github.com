@@ -158,14 +158,6 @@ ul.posts {
 /*
 /*****************************************************************************/
 
-.posteddate {
-    text-align: right;
-    font-family: BitstreamVeraSerifRoman,sans-serif;
-    font-size: 50%;
-    font-style: italic;
-    font-color: #808080;
-}
-
 #post {
 
 }
@@ -215,6 +207,7 @@ ul.posts {
   }
 
 
+  /* My Addition */
   /* Widgets */
 
 .widget {
@@ -232,4 +225,26 @@ ul.posts {
     font-size: 170%;
     font-weight: normal;
     padding-left: 3em;
+}
+
+.posteddate {
+    font-family: BitstreamVeraSerifRoman,sans-serif;
+    font-size: 50%;
+    font-style: italic;
+    color: #808080;    
+    text-align: right;
+    margin-bottom: 2em;
+}
+
+.postheading {
+    font-family: AaarghNormal,sans-serif;
+    font-size: 160%;
+    color: #753321;
+    font-weight: bold;
+    padding-bottom: 1em;
+}
+
+.postbody {
+    font-family: BitstreamVeraSerifRoman,sans-serif;
+    font-size: small;
 }
