@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>>Inserting GPL license notice in Emacs</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/blog/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/blog/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/blog/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/blog/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/blog/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-angelina.css" type="text/css"/>
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div id="post">
+><div style="text-align: justify;">If you have used Geany a simple IDE it allows you to insert the GPL or similar license into the code file. I use Emacs and when I want to insert some sort of open source license I had to switch back to Geany and insert the license and return back to Emacs. Finally I thought of writing my own yasnippet to do this job. I've written 2 separate snippet files one for Python and other can be used by all languages which use C style comments.<br /><br /><a name='more'></a>&nbsp;</div>The snippet does the following<br /><div style="text-align: justify;">1. It gets the name of the file from the current buffer's name</div><div style="text-align: justify;">2. Copyright statement similar to one found in GPL license notice. Here I extract the year from current date. Also I insert the user name and email address from elisp variables user-full-name and user-mail-address. For customizing user name and email address please add the following lines in your .emacs file</div><blockquote><i>(setq user-full-name</i><br /><i>"Your name")</i><br /><i>(setq user-mail-address</i><br /><i>"Your email address")</i></blockquote><div style="text-align: justify;">3. Next comes the type of license. You can select license from drop down (Lesser,Affero) if you want to use GPL then just leave this field to default.</div><div style="text-align: justify;">4. Version is also selected from drop down. Version 2 and 3 are for GPL,Affero and 2 2.1 for Lesser GPL. Its up-to user to select proper version for a license selected in previous option.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">The first 2 options that is file name and copyright lines can be edited to override default values. Please use Tab key to navigate from one field to other.</div><div style="text-align: justify;"><br /></div>Here are the installation instruction<br /><div style="text-align: justify;">1. Copy the pygpl to <i><b>snippets/text-mode/python-mode/</b></i> folder.</div>2. Copy the cgpl file to <i><b>snippets/text-mode/cc-mode </b></i>directory and then create hard links using ln in c-mode and c++-mode.<br />&nbsp; <br />Usage:<br /><div style="text-align: justify;">1. In the Python mode just type <i><b>pygpl</b></i> and then hit Tab key and license notice will be inserted starting from the line where you wrote pygpl. </div>2. For C/C++ or any other mode follow the same step just type in <i><b>cgpl</b></i> instead of pygpl rest all remains same.<br />Here is a screen shot of the license notice inserted in a Python file<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_Pms4ehFPMfI/TF7qnMUDs6I/AAAAAAAABX4/10SQnSCkx4I/s1600/screen_shot.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="473" src="http://3.bp.blogspot.com/_Pms4ehFPMfI/TF7qnMUDs6I/AAAAAAAABX4/10SQnSCkx4I/s640/screen_shot.png" width="640" /></a></div><br />You can get the snippets from github. This is the first version of these snippets. Any suggestions on improvements are welcome :)<br />--Vasudev
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Dec 2011</span> &raquo; <a href=" / /2011/12/23/dh-make-font-a-font-package-helper-for-debian.html">>dh-make-font - A Font package helper for Debian</a></li>
+    
+      <li><span>14 Dec 2011</span> &raquo; <a href=" / /2011/12/14/my-journey-with-debian-and-floss-part-2.html">>My Journey with Debian and FLOSS - Part 2</a></li>
+    
+      <li><span>13 Dec 2011</span> &raquo; <a href=" / /2011/12/13/my-journey-with-debian-and-floss-part-1.html">>My Journey with Debian and FLOSS - Part 1</a></li>
+    
+  </ul>
+</div>
+
+        </div>
+        <div class="fourcol last">
+          <div class="widget">
+            Connect to me on Friendica
+            <script src="http://frndk.de/widgets/friends?k=37533857"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="site">
+        <div class="row">
+          <div class="footer">
+            <div class="contact">
+              <p>
+                (c) 2012 Vasudeva Kamath<br />
+                The contents of this site are shared under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="contact">CC-BY-SA-3.0 Unported</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+  </body>
+</html>
+
+

@@ -1,0 +1,16 @@
+--- 
+layout: post
+title: ">Installing libxml on Ubuntu"
+published: true
+meta: 
+  blogger_author: Vasudev Kamathhttp://www.blogger.com/profile/05106578827322209004noreply@blogger.com
+  blogger_blog: blog.copyninja.info
+  blogger_permalink: /2010/01/installing-libxml-on-ubuntu.html
+tags: 
+- libxml2
+- LINUX
+- XML
+type: post
+status: publish
+---
+><div style="text-align: justify;">These day i've been working more on the XML files and I really love working with XML files. <a href="http://xmlsoft.org/">Libxml</a> is one real good library out there for XML parsing and Creation. It was basically written as XML parser tool kit for GNOME but it can also be used outside the GNOME environment. It has been ported to wide variety of languages but it was basically written in C. In this post i'm just going to tell how to install the libxml on Debian based distro's.<br /></div><br /><div style="text-align: justify;">For writing programs using libxml and compiling you need libxml2-dev package to be installed on your machine. To install the libxml2-dev use the following command<br /></div><br /><blockquote>sudo apt-get install libxml2-dev<br /></blockquote><br /><div style="text-align: justify;">To compile your program with gcc you need to provide the linker flags to find out about compilation and linker flags libxml2 comes with a handy tool called xml2-config.<br /></div><br />To print the pre-processor and compiler flags use the following command<br /><br /><blockquote>xml2-config --cflags<br /></blockquote><br />To print the library linking information use the following command<br /><br /><blockquote>xml2-config --libs<br /></blockquote><br /><div style="text-align: justify;">The linker option for gcc will be -lxml2. In my next post i'll be writing on how to create a simple XML file using libxml library, till then C'ya folks. :)<br /></div>

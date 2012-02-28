@@ -1,0 +1,15 @@
+--- 
+layout: post
+title: ">Generating thumbnail from a captured image in Blackberry"
+published: true
+meta: 
+  blogger_author: Vasudev Kamathhttp://www.blogger.com/profile/05106578827322209004noreply@blogger.com
+  blogger_blog: blog.copyninja.info
+  blogger_permalink: /2009/10/generating-thumbnail-from-captured.html
+tags: 
+- BlackBerry Application
+- thumbnail generation in blackberry
+type: post
+status: publish
+---
+><div style="text-align: justify;">Blackberry OS v4.6 and later will allow you to directly interact with camera and capture images. Till OS v4.5 for capturing image you needed to invoke the default camera application present in Blackberry using Invoke api. After capturing you may want to display the image as a thumbnail to user so now you will have question how can you do this. Even I had this same question and looked into many forums but didn't get a satisfactory answer later when I saw the Blackberry api reference i found a function by name <b>scaleImage32</b> under <b>EncodedImage</b> class. But I couldn't make it work properly since i had to convert my Bitmap image into EncodedImage and then use the function and get the Bitmap from this scaled image using getBitmap which is an expensive  call requiring lot of processing along with that whatever i get as output of this function was only 4bytes which means there was some problem in my logic. After struggling a lot I looked at the class <b>Bitmap </b>in the JDE refernce i found the <b>createBitmapFromBytes</b> allowed scaling and this function worked perfectly fine. Below is the piece of code which does this work.<br /><br /><pre name="code" class="java">FileConnection fc = null;<br />InputStream  is = null;<br />int length;<br />byte[] data = null;<br />Bitmap thumbnail = null;<br /><br />try {<br />fc = (FileConnection)Connector.open(filename);<br />is = fc.openInputStream();<br />if(fc.exists()) {<br />length = (int)fc.fileSize();<br />data = new byte[length];<br />fc.read(data,0,length);<br />thumnail = Bitmap.createBitmapFromBytes(data,0,length,20);<br />}<br />}<br />catch(Exception e)<br />{<br /><br />}<br /></pre><br />Prototype of createBitmapFromBytes is as follows<br /></div><pre name="code" class="java">static Bitmap createBitmapFromBytes(byte[] bytes, int offset, int length, int scale)<br /></pre>Here I've just mentioned the logic modify it to suite your needs. Your thumbnail will be returned as Bitmap object which you can use easily in your application.<br />One more thing I wanted to add here is scale factor to get thumbnail sized image your scale factor should be more than 20. C ya till next time

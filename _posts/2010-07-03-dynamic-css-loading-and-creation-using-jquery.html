@@ -1,0 +1,18 @@
+--- 
+layout: post
+title: ">Dynamic CSS Loading and Creation using Jquery"
+published: true
+meta: 
+  blogger_author: Vasudev Kamathhttp://www.blogger.com/profile/05106578827322209004noreply@blogger.com
+  blogger_blog: blog.copyninja.info
+  blogger_permalink: /2010/07/dynamic-css-loading-and-creation-using.html
+tags: 
+- css
+- hack
+- jquery
+- Programming
+- SILPA
+type: post
+status: publish
+---
+><div xmlns="http://www.w3.org/1999/xhtml">This is my first post on web development side. Frankly I'm not a designer and I don't understand the art of designing correctly. But this time I got in a situation where I had to do design changes in <a href="http://smc.org.in/silpa" target="_blank" title="SILPA">Silpa's </a>Web font module. SILPA is the first service which provides Indic web fonts. Currently we have web font for Malayalam and Kannada languages.<br />Requirement was something like this - I need to get font details from Silpa which contains Font name, its language and sample text to preview the font.<br />Challenge: To preview the font on sample text, I needed to get @font-face CSS from the Silpa which can be done using &lt;link rel="stylesheet" href="http://smc.org.in/silpa/Webfont?font=Malige"/ type="text/css"&gt; tag which need to be put in &lt;head&gt; section of HTML page and create corresponding CSS for the font dynamically.<br />Solution: <a href="http://thottingal.in/" target="_blank" title="Santhosh's Home Page">Santhosh</a> gave me a hint "google dynamic CSS loading using Jquery" and this <a href="http://topsecretproject.finitestatemachine.com/2009/09/how-to-load-javascript-and-css-dynamically-with-jquery/" target="_blank" title="Dynamic CSS Loading with Jquery">link</a> came to my rescue. Here is what I did<br /><script src="http://gist.github.com/597120.js?file=dynamiccss.js"></script><br />css_link is generated using font name returned by the SILPA. Next was to create font CSS for each font's preview text. Well I used my own technique without knowing it will work or not but voila it worked :)<br />Here is what I did<br /><script src="http://gist.github.com/597123.js?file=dynamic_css_text.js"></script><br />And voila webfonts where previewed :). Here is the link for the page <a href="http://smc.org.in/silpa/Webfonts" target="_blank" title="Webfonts in SILPA">http://smc.org.in/silpa/Webfonts.</a>If you didn't understand the entire code have a look at the source code <a href="http://git.savannah.gnu.org/cgit/silpa.git/tree/modules/webfonts/index.html" target="_blank" title="Source Code">here.</a>Comments are welcome.</div>

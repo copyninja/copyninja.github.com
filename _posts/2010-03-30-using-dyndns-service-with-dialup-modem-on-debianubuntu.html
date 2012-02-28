@@ -1,0 +1,16 @@
+--- 
+layout: post
+title: ">Using dyndns service with Dialup Modem on Debian/Ubuntu"
+published: true
+meta: 
+  blogger_author: Vasudev Kamathhttp://www.blogger.com/profile/05106578827322209004noreply@blogger.com
+  blogger_blog: blog.copyninja.info
+  blogger_permalink: /2010/03/using-dyndns-service-with-dialup-modem.html
+tags: 
+- ddclient
+- dyndns
+- LINUX
+type: post
+status: publish
+---
+><div xmlns="http://www.w3.org/1999/xhtml"><div style="text-align: justify;">I know dial up modems are almost out of date, but there are still people like me who are satisfied with dialup modem (or are not able to afford broadband :P ). So if you are using a dialup modem and want to use dyndns service there is good tool available for you to update you IP address to dyndns without having to login to the web interface. This tool is ddclient and can be downloaded from <a href="http://sourceforge.net/apps/trac/ddclient">here</a>.</div><div style="text-align: justify;">For those who want to know what is dyndns, it provides home and small businesses users domain, email, and Internet  infrastructure services. <a href="https://www.dyndns.com/about/">More info here</a>.</div><ol><li style="text-align: justify;">Ok once you download the tar ball extract it and copy the ddclient perl script to the /usr/sbin/(You need to be root or need to use sudo).</li><li style="text-align: justify;">Create /etc/ddclient directory and create a file ddclient.conf inside it with following contents</li></ol><br /><blockquote><pre class="wiki"># /etc/&lt;span class="searchword0"&gt;ddclient&lt;/span&gt;/ddclient.conf<br />#<br />protocol=dyndns2<br />use=web<br />login=mylogin<br />password=mypassword<br />myhost.dyndns.org<br /></pre></blockquote><br /><div style="text-align: justify;">Change the fields appropriately.</div><ol start="3"><li style="text-align: justify;">Now create directory /var/cache/ddclient and create a file ddclient.cache inside it. You can use <b>touch</b> command for this purpose.</li><li style="text-align: justify;">To update your IP after you connect to internet run the following command</li></ol><blockquote>sudo ddclient -daemon 300 -syslog</blockquote><div style="text-align: justify;">The output of command will be present in /var/log/syslog. Just verify the log to make sure that you have updated the ip successfully. You can write this command to a script file and add it to startup but I don't recommend because while using modem we need to dial manually so we can update the ip with above command once we get connected to internet.</div><br /><br /><div class="zemanta-pixie"><img alt="" class="zemanta-pixie-img" src="http://img.zemanta.com/pixy.gif?x-id=3bca3757-2e9b-8833-b23e-50914b9a4e5d" /></div></div>

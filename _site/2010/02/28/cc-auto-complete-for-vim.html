@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>>C/C++ Auto Complete for vim</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/blog/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/blog/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/blog/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/blog/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/blog/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-angelina.css" type="text/css"/>
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div id="post">
+><div xmlns='http://www.w3.org/1999/xhtml'><div align='justify'>In my last post I told how to make vim give auto complete suggestion for Python. Now its time for C and C++. During our college days in lab we used vim in C/C++ related labs and we had to remember each and every function the outcome was students bi-hearting the programs with out understanding it (of course they wont enjoy programing ;) ). Of course there are many editor with good features but the simple editor like vim also has very good feature (some time can say better than full fledged IDE's). Ok now lets get to the point. You need to download the following things before proceeding<br/></div><div align='justify'>1. <a href='http://www.vim.org/scripts/script.php?script_id=1520'>OmniCppComplete plugin</a> for the vim<br/></div><div align='justify'>2. exuberant-ctags. (if you are using Debian based distro's you can use this command sudo apt-get install exuberant-ctags)<br/></div><div align='justify'>3. <a href='http://www.vim.org/scripts/script.php?script_id=2358'>CPP STL source</a> for ctags<br/></div><br/>Procedure:<br/>1. Unpack the omnicpp*.zip file. the resulting folder has following structure<br/>OmniCpp-x.x<br/>      |_ doc<br/>      |_ autoload<br/>      |_ after<br/>         |_ ftplugin<br/>            |_ c.vim<br/>            |_ cpp.vim<br/><div align='justify'>Copy each of this directory into ~/.vim folder. Note if you already have after directory structure in the ~/.vim just copy the 2 *.vim files into ~/.vim/after/ftplugin/ folder.<br/></div><div align='justify'>2. Now in the .vimrc if you haven't already enabled file type plugin enable it and the set nocp line above it. Your .vimrc should have lines looking like this<br/></div><blockquote>  1 " Enable file type plugins<br/>  2 set nocp<br/>  3 filetype plugin on<br/></blockquote><div align='justify'>3. Create <b>tags</b> directory inside the ~/.vim. <br/></div><div align='justify'>4. Unpack the cpp_src.tar.bz2 and generate the tags for stl and move it to ~/.vim/tags directory. Use the following command<br/></div><blockquote><pre>ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ cpp_src &amp;&amp; mv tags ~/.vim/tags/stl</pre></blockquote><div align='justify'>Explanation for the options can be found in the man pages of ctags. In ubuntu machine you may need to use sudo before both command. Similarly you can create tags for the Open GL Qt4 or any other libraries which are present in /usr/include directory. Each library will be present as directory for eg. If you have installed libxml2 you will have libxml2 directory. In the above command just change the directory name to appropriate one and also generated tags file to avoid over writing.<br/></div><br/><div align='justify'>5. Well now some changes needed to do be done in .vimrc file. Copy paste the below code into your .vimrc<br/></div><blockquote>  6 " configure tags - add aditional tags here or comment out not-used ones<br/>  7 "set tags+=~/.vim/tags/gl<br/>  8 set tags+=~/.vim/tags/stl<br/>  9 set tags+=~/.vim/tags/libxml2<br/> 10 set tags+=~/.vim/tags/llvmc<br/> 11 set tags+=~/.vim/tags/llvm<br/> 12 set tags+=~/.vim/tags/cairo<br/> 13 <br/> 14 " build tags of your own project with CTRL+F12<br/> 15 "map &lt;C-F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .&lt;CR&gt;<br/> 16 noremap &lt;F12&gt; :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .&lt;cr&gt;<br/> 17 inoremap &lt;F12&gt; &lt;Esc&gt;:!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .&lt;cr&gt;<br/> 18 <br/> 19 " OmniCppComplete<br/> 20 let OmniCpp_NamespaceSearch = 1<br/> 21 let OmniCpp_GlobalScopeSearch = 1<br/> 22 let OmniCpp_ShowAccess = 1<br/> 23 let OmniCpp_MayCompleteDot = 1<br/> 24 let OmniCpp_MayCompleteArrow = 1<br/> 25 let OmniCpp_MayCompleteScope = 1<br/> 26 let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]<br/> 27 <br/> 28 <br/> 29 " automatically open and close the popup menu / preview window<br/> 30 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif<br/> 31 set completeopt=menuone,menu,longest,preview<br/></blockquote><br/><br/><div align='justify'>set directive points omnicppcomplete plugin to the proper tags, do comment or uncoment according to tags which you have generated, also ignore the numbers since I had turned on numbering in my vim it came and I'm lazy to remove all the numbers :P.<br/></div><div align='justify'>The next line is mapping of F12 key to generate tags for project you are working on currently. You need to manually use it if you want to use auto complete feature with your currently working file set. Note command assumes that all your files are present in current working directory. Below is the screen shot of my vim's auto complete in action.<br/></div><img src='http://lh4.ggpht.com/_Pms4ehFPMfI/S4pUiVsAT1I/AAAAAAAABTE/tUYfu25sPMg/%5BUNSET%5D.png?imgmax=800' style='max-width: 800px;'/><br/><br/><div align='justify'>Well that's all folks. Hope you will enjoy coding with vim's auto complete feature. C ya <br/></div><br/>Vasudev<br/><br/><br/><div class='zemanta-pixie'><img src='http://img.zemanta.com/pixy.gif?x-id=542a029f-8b65-8d8c-ba30-ddc24a35e213' alt='' class='zemanta-pixie-img'/></div></div>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Dec 2011</span> &raquo; <a href=" / /2011/12/23/dh-make-font-a-font-package-helper-for-debian.html">>dh-make-font - A Font package helper for Debian</a></li>
+    
+      <li><span>14 Dec 2011</span> &raquo; <a href=" / /2011/12/14/my-journey-with-debian-and-floss-part-2.html">>My Journey with Debian and FLOSS - Part 2</a></li>
+    
+      <li><span>13 Dec 2011</span> &raquo; <a href=" / /2011/12/13/my-journey-with-debian-and-floss-part-1.html">>My Journey with Debian and FLOSS - Part 1</a></li>
+    
+  </ul>
+</div>
+
+        </div>
+        <div class="fourcol last">
+          <div class="widget">
+            Connect to me on Friendica
+            <script src="http://frndk.de/widgets/friends?k=37533857"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="site">
+        <div class="row">
+          <div class="footer">
+            <div class="contact">
+              <p>
+                (c) 2012 Vasudeva Kamath<br />
+                The contents of this site are shared under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="contact">CC-BY-SA-3.0 Unported</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+  </body>
+</html>
+
+

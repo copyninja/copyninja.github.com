@@ -1,0 +1,17 @@
+--- 
+layout: post
+title: ">Inserting GPL license notice in Emacs"
+published: true
+meta: 
+  blogger_author: Vasudev Kamathhttp://www.blogger.com/profile/05106578827322209004noreply@blogger.com
+  blogger_blog: blog.copyninja.info
+  blogger_permalink: /2010/08/inserting-gpl-license-notice-in-emacs.html
+tags: 
+- emacs
+- hack
+- Programming
+- yasnippet
+type: post
+status: publish
+---
+><div style="text-align: justify;">If you have used Geany a simple IDE it allows you to insert the GPL or similar license into the code file. I use Emacs and when I want to insert some sort of open source license I had to switch back to Geany and insert the license and return back to Emacs. Finally I thought of writing my own yasnippet to do this job. I've written 2 separate snippet files one for Python and other can be used by all languages which use C style comments.<br /><br /><a name='more'></a>&nbsp;</div>The snippet does the following<br /><div style="text-align: justify;">1. It gets the name of the file from the current buffer's name</div><div style="text-align: justify;">2. Copyright statement similar to one found in GPL license notice. Here I extract the year from current date. Also I insert the user name and email address from elisp variables user-full-name and user-mail-address. For customizing user name and email address please add the following lines in your .emacs file</div><blockquote><i>(setq user-full-name</i><br /><i>"Your name")</i><br /><i>(setq user-mail-address</i><br /><i>"Your email address")</i></blockquote><div style="text-align: justify;">3. Next comes the type of license. You can select license from drop down (Lesser,Affero) if you want to use GPL then just leave this field to default.</div><div style="text-align: justify;">4. Version is also selected from drop down. Version 2 and 3 are for GPL,Affero and 2 2.1 for Lesser GPL. Its up-to user to select proper version for a license selected in previous option.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">The first 2 options that is file name and copyright lines can be edited to override default values. Please use Tab key to navigate from one field to other.</div><div style="text-align: justify;"><br /></div>Here are the installation instruction<br /><div style="text-align: justify;">1. Copy the pygpl to <i><b>snippets/text-mode/python-mode/</b></i> folder.</div>2. Copy the cgpl file to <i><b>snippets/text-mode/cc-mode </b></i>directory and then create hard links using ln in c-mode and c++-mode.<br />&nbsp; <br />Usage:<br /><div style="text-align: justify;">1. In the Python mode just type <i><b>pygpl</b></i> and then hit Tab key and license notice will be inserted starting from the line where you wrote pygpl. </div>2. For C/C++ or any other mode follow the same step just type in <i><b>cgpl</b></i> instead of pygpl rest all remains same.<br />Here is a screen shot of the license notice inserted in a Python file<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_Pms4ehFPMfI/TF7qnMUDs6I/AAAAAAAABX4/10SQnSCkx4I/s1600/screen_shot.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="473" src="http://3.bp.blogspot.com/_Pms4ehFPMfI/TF7qnMUDs6I/AAAAAAAABX4/10SQnSCkx4I/s640/screen_shot.png" width="640" /></a></div><br />You can get the snippets from github. This is the first version of these snippets. Any suggestions on improvements are welcome :)<br />--Vasudev

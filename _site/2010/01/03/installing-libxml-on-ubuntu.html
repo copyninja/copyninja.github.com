@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>>Installing libxml on Ubuntu</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/blog/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/blog/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/blog/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/blog/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/blog/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-angelina.css" type="text/css"/>
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div id="post">
+><div style="text-align: justify;">These day i've been working more on the XML files and I really love working with XML files. <a href="http://xmlsoft.org/">Libxml</a> is one real good library out there for XML parsing and Creation. It was basically written as XML parser tool kit for GNOME but it can also be used outside the GNOME environment. It has been ported to wide variety of languages but it was basically written in C. In this post i'm just going to tell how to install the libxml on Debian based distro's.<br /></div><br /><div style="text-align: justify;">For writing programs using libxml and compiling you need libxml2-dev package to be installed on your machine. To install the libxml2-dev use the following command<br /></div><br /><blockquote>sudo apt-get install libxml2-dev<br /></blockquote><br /><div style="text-align: justify;">To compile your program with gcc you need to provide the linker flags to find out about compilation and linker flags libxml2 comes with a handy tool called xml2-config.<br /></div><br />To print the pre-processor and compiler flags use the following command<br /><br /><blockquote>xml2-config --cflags<br /></blockquote><br />To print the library linking information use the following command<br /><br /><blockquote>xml2-config --libs<br /></blockquote><br /><div style="text-align: justify;">The linker option for gcc will be -lxml2. In my next post i'll be writing on how to create a simple XML file using libxml library, till then C'ya folks. :)<br /></div>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Dec 2011</span> &raquo; <a href=" / /2011/12/23/dh-make-font-a-font-package-helper-for-debian.html">>dh-make-font - A Font package helper for Debian</a></li>
+    
+      <li><span>14 Dec 2011</span> &raquo; <a href=" / /2011/12/14/my-journey-with-debian-and-floss-part-2.html">>My Journey with Debian and FLOSS - Part 2</a></li>
+    
+      <li><span>13 Dec 2011</span> &raquo; <a href=" / /2011/12/13/my-journey-with-debian-and-floss-part-1.html">>My Journey with Debian and FLOSS - Part 1</a></li>
+    
+  </ul>
+</div>
+
+        </div>
+        <div class="fourcol last">
+          <div class="widget">
+            Connect to me on Friendica
+            <script src="http://frndk.de/widgets/friends?k=37533857"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="site">
+        <div class="row">
+          <div class="footer">
+            <div class="contact">
+              <p>
+                (c) 2012 Vasudeva Kamath<br />
+                The contents of this site are shared under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="contact">CC-BY-SA-3.0 Unported</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+  </body>
+</html>
+
+

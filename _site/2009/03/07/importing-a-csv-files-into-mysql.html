@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>>Importing a CSV Files into MySQL</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/blog/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/blog/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/blog/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/blog/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/blog/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-angelina.css" type="text/css"/>
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div id="post">
+><div style="text-align: justify;">CSV stands for Coma separated Values. Normally in this file each field is separated from other using ",". Well as part of my project I created a sniffer which will be sitting on the gateway and captures all packet coming and going to and from it. I needed to record all the traffic which I capture. Bestway is to dump it into a log file. First I thought of using space as delimeter but our sir told its better to use CSV instead so I seperated each fields using coma's. As per the requirement of the project I needed to create different forms of graphs. First I thought of creating graphs statically at the end of each day by using the Crontab facility. But our sir wanted us to make this graph generation dynamically. Well using flat file which grows very fast really gave us a head ache. But I read in some site that I can easily import the CVS files into any application. I stumbled uppon the PHPMyAdmins import facility which supports importing data from CSV File. I got the query from PHPMyAdmin to do the job.</div><div style="text-align: justify;">Let me tell how to import your log files into database.</div><div style="text-align: justify;">1. Create a table with number of fields equal to number of fields in your fail.</div><div style="text-align: justify;">2. Use the LOAD DATA command to get files content into table. Below is the syntax of the command</div><br /><pre name="cde" class="sql">LOAD DATA [LOW_PRIORITY | CONCURRENT] [LOCAL] INFILE 'file_name'<br />    [REPLACE | IGNORE]<br />    INTO TABLE tbl_name<br />    [CHARACTER SET charset_name]<br />    [{FIELDS | COLUMNS}<br />        [TERMINATED BY 'string']<br />        [[OPTIONALLY] ENCLOSED BY 'char']<br />        [ESCAPED BY 'char']<br />    ]<br />    [LINES<br />        [STARTING BY 'string']<br />        [TERMINATED BY 'string']<br />    ]<br />    [IGNORE number LINES]<br />    [(col_name_or_user_var,...)]<br />    [SET  = expr,...]</pre><div style="text-align: justify;">For example my log file consisted of 8 fields. Format is shown below</div><blockquote>timestamp,eth_src,ip_src,src_port,eth_dest,ip_dest,dest_port,protocol</blockquote><div style="text-align: justify;">I created table to consist these 10 fields with time stamp as primary key and used <b>load data</b> command as follows</div><pre name="code" class="sql">LOAD DATA LOCAL INFILE '/var/log/sniffer.log' IGNORE INTO TABLE `sniffer`<br />FIELDS TERMINATED BY ','<br />ESCAPED BY '\\'<br />LINES TERMINATED BY '\n'</pre><div style="text-align: justify;">&nbsp;In your log file delimeter can be any charachter you want, you just need to specify it as <b>FIELDS TERMINATED BY ','</b>. Similarly you can specify the line terminator also.</div><div style="text-align: justify;">For more information about this command refer this <a href="http://dev.mysql.com/doc/refman/5.1/en/load-data.html">link</a>. Also don't forget to try out <a href="http://www.phpmyadmin.net/">PHPMyAdmin</a></div>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Dec 2011</span> &raquo; <a href=" / /2011/12/23/dh-make-font-a-font-package-helper-for-debian.html">>dh-make-font - A Font package helper for Debian</a></li>
+    
+      <li><span>14 Dec 2011</span> &raquo; <a href=" / /2011/12/14/my-journey-with-debian-and-floss-part-2.html">>My Journey with Debian and FLOSS - Part 2</a></li>
+    
+      <li><span>13 Dec 2011</span> &raquo; <a href=" / /2011/12/13/my-journey-with-debian-and-floss-part-1.html">>My Journey with Debian and FLOSS - Part 1</a></li>
+    
+  </ul>
+</div>
+
+        </div>
+        <div class="fourcol last">
+          <div class="widget">
+            Connect to me on Friendica
+            <script src="http://frndk.de/widgets/friends?k=37533857"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="site">
+        <div class="row">
+          <div class="footer">
+            <div class="contact">
+              <p>
+                (c) 2012 Vasudeva Kamath<br />
+                The contents of this site are shared under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="contact">CC-BY-SA-3.0 Unported</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+  </body>
+</html>
+
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>>Posting Data via Http from Blackberry</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/blog/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/blog/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/blog/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/blog/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/blog/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-angelina.css" type="text/css"/>
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div id="post">
+><div style="-webkit-background-clip: initial; -webkit-background-origin: initial; background-attachment: initial; background-color: white; background-image: initial; background-position: initial initial; background-repeat: initial; color: black; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font: normal normal normal 13px/19px Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0.6em; padding-left: 0.6em; padding-right: 0.6em; padding-top: 0.6em;"><div mce_style="text-align: justify" style="text-align: justify;">In this post i'm going to tel how to post the data to web services, don't misunderstand web service to SOAP services. I'm talking about normal webpages designed using jsp,php or asp or similar server side technology. We will be using URLEncodedPostData class from<span style="font-weight: bold;">net.rim.blackberry.api.browser&nbsp;</span>package&nbsp;to create a url encoded data which will be posted to webserver. For connecting to a particular website we will use HttpConnection class defined in&nbsp;<span style="font-weight: bold;">javax.microedition.io</span>&nbsp;package.</div><div mce_style="text-align: justify" style="text-align: justify;">First let us see how to create URL encoded data to post to server using URLEncodedPostData class. I should remind you this is a signed class and requires code signing for loading the program into actual device. If you want to avoid this you need to write your own function to encode your data into URL Encoded format. Now lets see how to do this using URLEncodedPostData class<br /><pre name="code" class="java">URLEncodedPostData _postData = new URLEncodedPostData("",false);<br />_postData.append("name","value");<br /></pre>First argument to constructor is encoding which is to be used leaving it as empty string means use default encoding. Second argument tells whether to use WAP conventions for encoding or not. append(String,String) function is used to create the URL encoded data. For example if your data is in the form fname=vasudev&amp;lname=kamath then you can create this string by writing like this<br /><pre name="code" class="java">_postData.append("fname","vasudev");<br />_postData.append("lname","kamath");<br /></pre>Now you know how to prepare your data lets move forward to creating connection to the webserver and then sending the prepared data using HTTP POST method. We will be using HttpConnection class for this purpose.<br /><pre name="code" class="java">bytes [] postDataBytes = _postData.getBytes();<br />HttpConnection _httpCon = (HttpConnection)Connector.open(url);<br />_httpConnection.setRequestMethod(HttpConnection.POST);<br />_httpConnection.setRequestProperty("User-Agent","Profile/MIDP-2.0 Configuration/CLDC-1.0");<br />_httpConnection.setRequestProperty("Content-Language", "en-US");<br />_httpConnection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");<br />_httpConnection.setRequestProperty("Content-Length",(new Integer(postDataBytes.length)).toString());<br /></pre>setRequestMethod function tells which method is used to send data it can have 2 values either HttpConnection.GET or HttpConnection.POST. The "User-Agent" string tells webserver about the browser which is sending the data. All above mentioned properties are present in standard Http headers and more detail on them can be found in this&nbsp;<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html" mce_href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html" target="_blank" title="HTTP/1.1 Header Field Definitions">link</a>. Of all the properties important ones are last 2 i.e&nbsp;<span style="font-weight: bold;">Content-Type&nbsp;</span>and&nbsp;<span style="font-weight: bold;">Content-Length&nbsp;</span>if you forget to mention these to webserver will not be able to read the data you sent. Here Content-Type is set to "<span style="font-weight: bold;">application/x-www-form-urlencoded</span>" which tells webserver that request contains url encoded form data. If you are planning to send files in the request to browser you should set Content-Type to "<span style="font-weight: bold;">multipart/form-data</span>" instead of this if you use&nbsp;&nbsp;"<span style="font-weight: bold;">application/x-www-form-urlencoded</span>" you will get response code as 500 meaning internal server error. Now you have prepared HTTP header with all required fields next step is to write the data to webserver which is done as follows.<br /><pre name="code" class="java">OutputStream os = _httpCon.openOutputStream();<br />os.write(_postData.getBytes());<br />os.flush(); // not required<br />int rc = _httpCon.getResponseCode(); //causes data to be sent to server and get response back<br /></pre>Depending on the response code you can do further processing. Response code for successful post will be 200 (HttpConnection.HTTP_OK) for more on response codes please see this&nbsp;<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" mce_href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html" target="_blank" title="HTTP/1.1 Status Code Definition">link</a>.</div><div mce_style="text-align: justify" style="text-align: justify;">Here is a generic class which i designed for posting the data and getting response back in the form of string. Hope it will help you in your program. If there are &nbsp;any mistakes in my post or in the code or any improvement to the code please mention it as comment.</div><div mce_style="text-align: justify" style="text-align: justify;"></div><pre name="code" class="java">import java.io.*;<br />import javax.microedition.io.*;<br />import net.rim.blackberry.api.browser.URLEncodedPostData;<br />class HttpPost<br />{<br />    private String _url;<br />    private URLEncodedPostData _postData;<br />    private byte[] _data;<br />    private HttpConnection _httpConnection;<br />    private OutputStream os;<br />    private InputStream is;<br /><br />    HttpPost(String url,URLEncodedPostData data) {<br />        _postData = postData;<br />        _url = url;<br />        try {<br />          _httpConnection = (HttpConnection)Connector.open(_url);<br />        } catch(Exception e) {<br />        }<br />    }<br /><br />    public String postData() {<br />         try {<br />            bytes [] postDataBytes = _postData.getBytes();<br />            _httpConnection.setRequestMethod(HttpConnection.POST);<br />            _httpConnection.setRequestProperty("User-Agent","Profile/MIDP-2.0 Configuration/CLDC-1.0");<br />            _httpConnection.setRequestProperty("Content-Language", "en-US");<br />            _httpConnection.setRequestProperty("Content-Type","application/x-www-form-urlencoded");<br />            _httpConnection.setRequestProperty("Content-Length",new Integer(postDataBytes.length).toString());<br />            os = _httpConnection.openOutputStream();<br />            os.write(_postDataBytes);<br />            <br />            int rc = _httpConnection.getResponseCode();<br />            if(rc == HttpConnection.HTTP_OK) {<br />                  is = _httpConnection.openInputStream();<br />                  is.read(_data);<br />            } else {<br />              _data = null;<br />            }<br />       } catch(Exception e) {<br />       }<br />       return (new String(_data));<br />    }<br />}</pre>In my next post i'll show how XML files can be handled in blackberry using KXML library. Till then C'ya :)</div>(<b>Note: In case you are not able to see the code properly because of template you can refer to my other blog </b><a href="http://vasudevkamath.techfiz.com/2009/09/13/posting-data-via-http-from-blackberry/"><b>here</b></a>)
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Dec 2011</span> &raquo; <a href=" / /2011/12/23/dh-make-font-a-font-package-helper-for-debian.html">>dh-make-font - A Font package helper for Debian</a></li>
+    
+      <li><span>14 Dec 2011</span> &raquo; <a href=" / /2011/12/14/my-journey-with-debian-and-floss-part-2.html">>My Journey with Debian and FLOSS - Part 2</a></li>
+    
+      <li><span>13 Dec 2011</span> &raquo; <a href=" / /2011/12/13/my-journey-with-debian-and-floss-part-1.html">>My Journey with Debian and FLOSS - Part 1</a></li>
+    
+  </ul>
+</div>
+
+        </div>
+        <div class="fourcol last">
+          <div class="widget">
+            Connect to me on Friendica
+            <script src="http://frndk.de/widgets/friends?k=37533857"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="site">
+        <div class="row">
+          <div class="footer">
+            <div class="contact">
+              <p>
+                (c) 2012 Vasudeva Kamath<br />
+                The contents of this site are shared under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="contact">CC-BY-SA-3.0 Unported</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+  </body>
+</html>
+
+

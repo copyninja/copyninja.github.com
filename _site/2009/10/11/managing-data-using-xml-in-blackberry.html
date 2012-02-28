@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>>Managing data using XML in Blackberry</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/blog/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/blog/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/blog/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/blog/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/blog/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-angelina.css" type="text/css"/>
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div id="post">
+><div style="text-align: justify;">XML files are good  medium for storing and exchanging the data over the network and they are widely used in many technologies to store and exchange the data. A good example which I can provide here are the web services, configuration files of many java based application servers and java based web projects and also in the API's of famous social network sites like twitter.<br /></div><div style="text-align: justify;">It is easy to store the data as a XML file in application that you develop for the blackberry. Though there are storage options like record store and persistent objects available in Blackberry I prefer the XML files over them. Blackberry provides SAX parser for parsing and modifying XML but I felt little difficult to use SAX api so I choose <a href="http://kxml.sourceforge.net/kxml2/" target="_blank" title="KXML2">KXML </a>as best alternative for SAX. I'm going to tell how to create a XML file using KXML without loosing a sweat and parsing the already existing XML files.<br /></div><div style="text-align: justify;">1. Creating a simple XML file using KXML2 api's<br /></div><br /><div style="text-align: justify;">Consider a simple XML file as shown below.<br /><pre class="xml" name="code">&lt;? xml version="1.0" encoding="UTF-8" ?&gt;<br />&lt;company&gt; &lt;employee id="1"&gt; &lt;fname&gt;Vasudev&lt;/fname&gt; &lt;lname&gt;Kamath&lt;/lname&gt; &lt;address&gt;Karkala&lt;/address&gt; &lt;/employee&gt; ... &lt;/company&gt; <br /></pre></div><a name='more'></a><br /><br /><div style="text-align: justify;">Use the below mentioned code for creating a xml file like above, the code itself is self explanatory.<br /><pre class="java" name="code">Document d = new Document();<br />Element root = d.createElement("","company");<br />Element employee = d.createElement("","employee");<br />e.setAttribute("","id","1");<br /><br />Element fname = d.createElement("","fname");<br />fname.addChild(Node.TEXT,"Vasudev");<br /><br /><br />Element lname = d.createElement("","lname");<br />lname.addChild(Node.TEXT,"Kamath");<br /><br />Element address = d.createElement(Node.TEXT,"address");<br />address.addChild(Node.TEXT,"Karkala");<br /><br />employee.addChild(Node.ELEMENT,fname);<br />employee.addChild(Node.ELEMENT,lname);<br />employee.addChild(Node.ELEMENT,address);<br /><br />root.addChild(Node.ELEMENT,employee);<br />d.addChild(Node.ELEMENT,root);<br /><br /></pre>Here first i'm creating a Document which is going to represent my XML file and then i'm creating the nodes required in my XML. The Node.ELEMENT represents and entire XML tag and its contents. For example  is an XML Element and if you look at  tag the content b/w opening and closing tag is simple text and is represented using Node.TEXT.<br /></div><br /><div style="text-align: justify;">Next step is to write this document to the file for which  we need KXmlSerializer which is part of KXML2 apis. Below is the code to write the document to file<br /></div><pre name="code" class="java">String fileName = "file:///SDCard/Blackberry/company.xml"<br />DataOutputStream os = null;<br />FileConnection fc = null</code><br /><br />try<br />{<br />fc = (FileConnection)Connector.open(filename,Connector.READ_WRITE);<br />if (! fc.exists())<br />fc.create();<br /><br />os = fconn.openDataOutputStream();<br />KXmlSerializer serializer = new KXmlSerializer();<br />serializer.setOutput(os, "UTF-8");<br />d.write(serializer);<br />}<br /><br />catch (IOException e) {<br />// TODO Auto-generated catch block<br />e.printStackTrace();<br />}<br /></pre><div style="text-align: justify;">As you can see it is very simple to create XML files using KXML2 api's and possibility of missing few ending tags while writing XML file is very less since API itself takes care of creating XML files.<br /></div><br /><div style="text-align: justify;">Ok next step is parsing the XML file and it is also pretty simple.I'll tell how to read the XML file into a Document() object and parse it and functions required to get a particular node and its child node remaining logic you need to implement depending on your requirements. Below is the code for reading a file to Document and parsing it.<br /></div><pre class="java" name="code">Document d= new Document();<br />FileConnection fc =  null;<br />DataInputStream is = null;<br />try {<br />fc = (FileConnection) Connector.open(fileName, Connector.READ);<br />is = fc.openDataInputStream();<br /><br />KXmlParser parser = new KXmlParser();<br />parser.setInput(is, "UTF-8");<br />d.parse(parser);<br />} catch (IOException e) {<br />// TODO Auto-generated catch block<br />e.printStackTrace();<br />} catch (XmlPullParserException e) {<br />// TODO Auto-generated catch block<br />e.printStackTrace();<br />}<br /></pre><div style="text-align: justify;">This code gets the entire XML file to Document() object d and also parses it !!. Amazing rite you didn't even do a file read operation and yet have the whole content into Document() object. Well this is why I liked KXML more than SAX. If you are interested in seeing how it does you can get the source code of KXML2 api's  and see. Now you have XML file in Document() object next how to get the required node? It is very simple you have function called <b>getElement(String namespace,name)</b> which gets particular node from its name in the XML file. There are many such functions available in KXML2 apis for more information look at its java doc <a href="http://kxml.sourceforge.net/kxml2/javadoc/" target="_blank" title="KXML2 Javadoc">here</a>.<br /><br /></div><div style="text-align: justify;">Last thing which I want to mention here is KXML library is meant not only for Blackberry but all those phones which supports  J2ME. You need to have either KXML2 jar as library in your project or if you want to debug the KXML2 then you need to <a href="http://sourceforge.net/project/downloading.php?group%5Fid=9157&amp;filename=kxml2-src-2.3.0.zip&amp;a=104174" target="_blank">KXML2 source code</a> and <a href="http://www.xmlpull.org/v1/download/xmlpull_1_1_3_4c_src.zip" target="_blank" title="XML Pull parser">XML Pull parser source code</a>. For more information on adding external library to your project please look at  KB article in Blackberry website.<br /></div><div style="text-align: justify;">Reference : <a href="http://stackoverflow.com/questions/877428/better-approach-for-xml-creation-in-blackberry/1259070#1259070" target="_blank" title="Stack Overflow">Stack Overflow</a> forums<br /></div><div style="text-align: justify;"><br /></div>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Dec 2011</span> &raquo; <a href=" / /2011/12/23/dh-make-font-a-font-package-helper-for-debian.html">>dh-make-font - A Font package helper for Debian</a></li>
+    
+      <li><span>14 Dec 2011</span> &raquo; <a href=" / /2011/12/14/my-journey-with-debian-and-floss-part-2.html">>My Journey with Debian and FLOSS - Part 2</a></li>
+    
+      <li><span>13 Dec 2011</span> &raquo; <a href=" / /2011/12/13/my-journey-with-debian-and-floss-part-1.html">>My Journey with Debian and FLOSS - Part 1</a></li>
+    
+  </ul>
+</div>
+
+        </div>
+        <div class="fourcol last">
+          <div class="widget">
+            Connect to me on Friendica
+            <script src="http://frndk.de/widgets/friends?k=37533857"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="site">
+        <div class="row">
+          <div class="footer">
+            <div class="contact">
+              <p>
+                (c) 2012 Vasudeva Kamath<br />
+                The contents of this site are shared under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="contact">CC-BY-SA-3.0 Unported</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+  </body>
+</html>
+
+

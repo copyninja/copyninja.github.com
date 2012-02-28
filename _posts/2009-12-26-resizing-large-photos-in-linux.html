@@ -1,0 +1,15 @@
+--- 
+layout: post
+title: ">Resizing Large photos in Linux"
+published: true
+meta: 
+  blogger_author: Vasudev Kamathhttp://www.blogger.com/profile/05106578827322209004noreply@blogger.com
+  blogger_blog: blog.copyninja.info
+  blogger_permalink: /2009/12/resizing-large-photos-in-linux.html
+tags: 
+- image resizing
+- LINUX
+type: post
+status: publish
+---
+>Last week Sunday went for small hiking with my collegues around Karkala my home town. We took around&nbsp; 350 odd photos with a 12MP camera. Each picture was about 1MB with resolution more than 3000pixels. I was trying to resize all these photos and <a href="http://aravindavk.in/" mce_href="http://aravindavk.in/">Aravinda</a> pointed me to image magick tool convert. But I had a problem here all picture names were in this format <span style="color: #993300;">Picture xxx.jpg</span> , space in the file name was causing problem. After searching for a while came accross <span style="color: #993300;">rename </span>command to rename the files by removing space in the file name. Here is how you do it<br /><blockquote><span style="color: #993300;"><code>rename "s/  *//g" *.jpg</code></span><br /></blockquote><span style="color: #993300;"><span style="color: black;">This renamed all the files to <span style="color: #993300;">Picturexxx.jpg <span style="color: black;">(here the xxx is a number</span></span></span><span style="color: black;">). Next I used the following script to resize all the files at a time without loosing the quality</span></span><br /><code><br />#!/bin/bash<br />for i in `ls *jpg`<br />do<br />convert -resize 700 -quality 100% "$i" "$i"<br />done<br /></code><br />Well I'm happy now I saved a lot of space on my HDD and also uploaded photos easily to my picasa web albums. This is the reason why I like Linux more. It always comes with many amazing tools and you don't have to pay a penny for it.

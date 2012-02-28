@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>>Connecting to a remote MySQL database</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/blog/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/blog/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/blog/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/blog/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/blog/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/blog/fonts/stylesheet-angelina.css" type="text/css"/>
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/blog/css/screen.css" type="text/css" media="screen, projection" />
+
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div id="post">
+><div style="-webkit-background-clip: initial; -webkit-background-origin: initial; background-attachment: initial; background-color: white; background-image: initial; background-position: initial initial; background-repeat: initial; color: black; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font: normal normal normal 13px/19px Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0.6em; padding-left: 0.6em; padding-right: 0.6em; padding-top: 0.6em;"><div mce_style="text-align: justify" style="text-align: justify;">In my project I needed to connect proxy server program running on the client machine to the MySQL database on the server machine. Each time I was trying to connect to MySQL server I was getting error message saying</div><blockquote><div mce_style="text-align: justify" style="text-align: justify;"><span class="Apple-style-span" mce_name="em" mce_style="font-style: italic;" style="font-style: italic;">Access Denied to user net@<client address="" ip=""> using password(yes)</client></span></div></blockquote><div mce_style="text-align: justify" style="text-align: justify;">I tried to find a solution and in one of the forums they had mentioned that to connect to MySQL DB from a remote machine we need to create a MySQL user on the server as</div><blockquote><div style="text-align: justify;">someuser@<span class="Apple-style-span" mce_name="em" mce_style="font-style: italic;" style="font-style: italic;"><remote-machine-ip></remote-machine-ip></span></div></blockquote><div mce_style="text-align: justify" style="text-align: justify;"></div><div style="text-align: justify;">Since my client program is designed to run on many client machine in parallel creating a user for each client is not feasible and also client machines will be getting IP address from DHCP its not possible to create&nbsp;<span class="Apple-style-span" mce_name="em" mce_style="font-style: italic;" style="font-style: italic;">user@<ip-address>.</ip-address></span><br /></div><div style="text-align: justify;">Finally I tried the regular expression of SQL i.e. % which literally means anything (ip,hostname or anything). So I created a user in the server as follows<br /></div><br /><blockquote><div mce_style="text-align: justify" style="text-align: justify;"><code>CREATE USER 'net'@'%' IDENTIFIED BY 'some password'<br />GRANT ALL PRIVILEGES ON some_db.* TO 'net'@'%';</code></div></blockquote><div mce_style="text-align: justify" style="text-align: justify;">Well that did it now I'm able to access MySQL DB from any client machine. But be careful in providing privileges to this user since it can be accessed from anywhere providing all privileges may lead to serious security issues.</div></div>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>23 Dec 2011</span> &raquo; <a href=" / /2011/12/23/dh-make-font-a-font-package-helper-for-debian.html">>dh-make-font - A Font package helper for Debian</a></li>
+    
+      <li><span>14 Dec 2011</span> &raquo; <a href=" / /2011/12/14/my-journey-with-debian-and-floss-part-2.html">>My Journey with Debian and FLOSS - Part 2</a></li>
+    
+      <li><span>13 Dec 2011</span> &raquo; <a href=" / /2011/12/13/my-journey-with-debian-and-floss-part-1.html">>My Journey with Debian and FLOSS - Part 1</a></li>
+    
+  </ul>
+</div>
+
+        </div>
+        <div class="fourcol last">
+          <div class="widget">
+            Connect to me on Friendica
+            <script src="http://frndk.de/widgets/friends?k=37533857"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container footer">
+      <div class="site">
+        <div class="row">
+          <div class="footer">
+            <div class="contact">
+              <p>
+                (c) 2012 Vasudeva Kamath<br />
+                The contents of this site are shared under <a href="http://creativecommons.org/licenses/by-sa/3.0/" class="contact">CC-BY-SA-3.0 Unported</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+  </body>
+</html>
+
+

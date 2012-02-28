@@ -1,0 +1,16 @@
+--- 
+layout: post
+title: ">Python and C Coupling"
+published: true
+meta: 
+  blogger_author: Vasudev Kamathhttp://www.blogger.com/profile/05106578827322209004noreply@blogger.com
+  blogger_blog: blog.copyninja.info
+  blogger_permalink: /2010/07/python-and-c-coupling.html
+tags: 
+- C
+- Programming
+- python
+type: post
+status: publish
+---
+><div xmlns="http://www.w3.org/1999/xhtml">One of the best feature of Python is you can write some modules in C and use it in the Python. This is usually done for the parts of the program which requires intensive calculation and their implementation in Python may make entire application slow. For coupling you need to write the function which are calculation intensive in C and create a shared library file of it. Then you can use the <a href="http://docs.python.org/library/ctypes.html" target="_blank" title="Ctypes Module">ctypes</a> module in Python to import those module into your Python program. Well as an example lets write an C function for calculating factorial. See the code below<br /><script src="http://gist.github.com/596858.js?file=factorial.c"></script><br />Lets call this file test.c Now compile this file with following commands<br /><blockquote></blockquote><blockquote><i>gcc -fpic test.c <br />gcc -shared -o libtest.so test.o</i></blockquote><br /><a name='more'></a><br />This creates a shared library (dll in Windows way). Now lets write a Python file with same function to calculate factorial. Why I'm doing this is to show the efficiency of using C coupling. Below is the sample code I used.<br /><script src="http://gist.github.com/596863.js?file=gistfile1.py"></script><br />Well don't worry I purposefully did factorial of 1000 to show what happens. <i>Python will run out of stack space and if you remove the try except block python will complain about stack depth exceeded</i> and finally quits, but C function works pretty fine and returns a result. Well I don't know if result is proper or not since finding result wasn't my concern. Here is the output you get when you run the program <br /><blockquote><i>Python recursive call error stack depth exceeded </i></blockquote><blockquote><i>C call from python 0.062844 </i></blockquote>You can change the number and test the time taken. One thing I want to tell here is CDLL is for *nix users, if you are Windows user you should use either WinDLL or OleDLL class for doing this. Any variable you pass to the C functions need to be of types defined in ctypes you can't directly pass a Python data type to C functions. <br />There is no proper example available on how to use this in documentation so thought of writing this blog. I'm still learning the ways of utilizing C programs from with in Python. And as I learn new things I'll update them here.<br />Vasudev</div>
