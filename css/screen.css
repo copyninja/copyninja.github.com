@@ -68,7 +68,7 @@ ul.posts {
 
   ul.posts span {
     color: #aaa;
-    font-family: BitstreamVeraSerifRoman, "Courier New", monospace;
+    font-family: BitstreamVeraSerifRoman, monospace;
     font-size: 80%;
   }
 
@@ -219,13 +219,17 @@ ul.posts {
     padding-left: 2em;
 }
 
-.widget.textwidget {
-    text-align: left
-    font-family: BitstreamVeraSerifRoman,sans-serif;
-    font-size: 170%;
+.textwidget {
+    font-family: LatoLight,sans-serif;    
+    text-align: left;
+    font-size: 125%;
     font-weight: normal;
     padding-left: 3em;
+    border: 1px solid black;
 }
+
+
+/* Post Related */
 
 .posteddate {
     font-family: BitstreamVeraSerifRoman,sans-serif;
@@ -236,6 +240,7 @@ ul.posts {
     margin-bottom: 2em;
 }
 
+
 .postheading {
     font-family: AaarghNormal,sans-serif;
     font-size: 160%;
@@ -245,6 +250,6 @@ ul.posts {
 }
 
 .postbody {
-    font-family: BitstreamVeraSerifRoman,sans-serif;
-    font-size: small;
+    font-family: LatoLight,sans-serif;
+    font-size: medium;
 }
