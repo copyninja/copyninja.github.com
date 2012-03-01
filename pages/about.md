@@ -3,6 +3,7 @@
 layout: page
 title: About
 aboutcss_class: main-menu-item-selected
+permalink: /about/index.html
 
 ---
 
@@ -27,4 +28,5 @@ to word cracker). I spend most of my free time with computer hanging around in I
 *Debian Maintainer* I work mainly for team *Debian-IN*. My Debian packages? Look in the side bar.
 
 
+*****PS: This page is still under construction. Look back later! *****
 
