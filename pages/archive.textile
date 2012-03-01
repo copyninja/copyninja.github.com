@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Archives
+archive_page_css_class: selected
 ---
 
 h1. {{ page.title }}

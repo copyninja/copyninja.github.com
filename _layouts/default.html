@@ -51,12 +51,12 @@
           {{ content }}
         </div>
         <div class="fourcol last">
-          <div class="textwidget">
-            <ul>
-              <li> About</li>
-              <li> Projects </li>
-              <li> <a href="pages/archive.html"> Archives </a></li>
-            </ul>  
+          <div class="main-menu">
+              <div id="home-menu" class="main-menu-item"> <a href="/" class="{{ site.home_css_class }}"> Home </a></div>
+              <div id="me-menu" class="main-menu-item"><a href="/pages/about.html" class="{{ aboutcss_class }}"> About </a></div>
+              <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+              <div id="archive-menu" class="main-menu-item"> <a href="{{ site.baseurl }}/pages/archive.html" class="{{ page.archive_page_css_class }}"> Archives </a></div>
+              <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
           </div>
           <br/>
           <hr/>
