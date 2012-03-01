@@ -1,7 +1,9 @@
 ---
+
 layout: page
 title: Archives
-archive_page_css_class: selected
+archive_page_css_class: main-menu-item-selected
+
 ---
 
 h1. {{ page.title }}

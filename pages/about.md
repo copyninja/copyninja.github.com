@@ -2,7 +2,7 @@
 
 layout: page
 title: About
-aboutcss_class: selected
+aboutcss_class: main-menu-item-selected
 
 ---
 
