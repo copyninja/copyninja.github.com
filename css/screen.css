@@ -242,7 +242,7 @@ ul.posts {
 
 
 .postheading {
-    font-family: Helvetica,sans-serif,Arial;
+    font-family: LatoLight,sans-serif;
     font-size: 160%;
     color: #753321;
     font-weight: bold;
@@ -250,8 +250,8 @@ ul.posts {
 }
 
 .postbody {
-    font-family: Helvetica,sans-serif,Arial;
-    font-size: medium;
+    font-family: LatoLight,sans-serif;
+    font-size: 15px;
 }
 
 
