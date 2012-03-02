@@ -7,9 +7,9 @@ permalink: /rss/index.xml
 <?xml version="1.0"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{site.url}</title>
-    <link>{site.url}</link>
-    <atom:link href="http://{site.url}/rss" rel="self" type="application/rss+xml" />
+    <title>{{site.url}}</title>
+    <link>{{site.url}}</link>
+    <atom:link href="{{site.url}}/rss" rel="self" type="application/rss+xml" />
     <description>RSS of Random Ramblings</description>
     <language>en-us</language>
     <pubDate>{{ site.time | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
@@ -18,10 +18,10 @@ permalink: /rss/index.xml
     {% for post in site.posts %}
     <item>
       <title>{{ post.title }}</title>
-      <link>http://{{ post.url }}</link>
+      <link>{{site.url}}{{ post.url }}</link>
       <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
       <author>kamathvasudev at gmail dot com (Vasudev Kamath)</author>
-      <guid>http://site.url{{ post.id }}</guid>
+      <guid>{{ site.url }}{{ post.id }}</guid>
       <description>{{ post.content | xml_escape }}</description>
     </item>
     {% endfor %}
