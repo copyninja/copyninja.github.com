@@ -1,0 +1,43 @@
+--- 
+layout: post
+title: Improve speed of browsing using dnsmasq
+published: true
+meta: 
+  _aioseop_title: Improve speed of browsing using dnsmasq
+  aktt_notify_twitter: "yes"
+  _edit_last: "23"
+  _aioseop_keywords: dnsmasq ubuntu
+  aktt_tweeted: "1"
+  _aioseop_description: This post tells you how to configure dnsmasq for dns caching in ubuntu. Same can be used in other distro's with slight modifications
+  _utw_tags_0: no tags
+tags: 
+- dnsmasq in ubuntu
+- LINUX
+type: post
+status: publish
+---
+<p style="text-align: justify">From past few days I was having this weird problem of unable to connect to Google search page few times a day. I was not sure what is causing this problem (since I was on Windows based machine I thought this might be doing of some unwanted program). Finally downloaded the <a title="namebench" href="http://code.google.com/p/namebench/" target="_blank">namebench, </a>a dns benchmarking tool and checked which will be the fastest dns server for me that time I found out my primary and secondary dns is not replying for Google.com weird. This is causing me so much trouble so thought of having my own local dns cache. When searched bumped accross <strong>dnsmasq</strong> and <strong>bind9</strong>, bind9 being full fledged dns server and can be configured to work as dns cache also. But i felt dnsmasq (light weight dhcp and caching dns server) is sufficient for the time being. Well enough of story let me come to point in this point i'm going to tell how to configure dnsmasq ;).</p>
+<p style="text-align: justify">dnsmasq doesn't really require configuration it can work without any configurations also. First thing is how to install it (for debian based distros)</p>
+
+<blockquote>sudo apt-get install dnsmasq</blockquote>
+The configuration file for dnsmasq resides in /etc folder and names is dnsmasq.conf, by default everything in this file is commented out. Fist uncomment the following to lines
+<blockquote>interface=ppp0
+listen-address=127.0.0.1</blockquote>
+<p style="text-align: justify">You need to add proper value after = symbol. <strong>interface</strong> tells dnsmasq to listen on specific interface this will be useful if you have multiple network interfaces and want dnsmasq to listen only on a particular interface. Since i'm using dialup my interface is ppp0, for users who are LAN or using broadband connections you can specify eth0 (more specifically ethN replace N with proper number depending on your machine configuration. To find out name of your interface use <strong>ifconfig</strong> command).  <strong>listen-address</strong> is very important one when you start dnsmasq it open and listens on port 53 this makes any one on the network to use your cache (and mostly lead to take advantages of vulnerability in the program) by adding 127.0.0.1 as value dnsmasq will accept request only from your local machine.</p>
+
+If you are intersted in checking if dnsmasq is working or not uncomment the line
+<blockquote>log-queries</blockquote>
+Found at the end of the file. To monitor the log use following command
+<blockquote>tail -f /var/log/syslog | grep dnsmasq -</blockquote>
+Finally if you don't want to use dns servers provided by your ISP (i really don't want to use because BSNL DNS is slow and they use Open DNS which i really hate for hijacking domains) create a file with list of dns name server ip's which you want to use and uncomment the line <strong>resolv-file</strong>= and add the file name after = symbol. In my system i created a file by name myipresolver.conf in /etc and modified the line to look like this
+<blockquote>resolv-file=/etc/myipresolver.conf</blockquote>
+If you are curious here is the content of the file
+<blockquote>nameserver 127.0.0.1
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 202.148.202.4
+nameserver 202.148.200.3
+nameserver 164.164.164.5</blockquote>
+By default I mean if you leave above mentioned property commented dnsmasq will read /etc/resolv.conf which contains ISP provided name servers. And ya one more thing don't forget to add <strong>nameserver 127.0.0.1</strong> line to the top of your /etc/resolv.conf to use your newly created dns cache :).
+
+If you find any mistakes in the post please do comment and correct me. C ya .....

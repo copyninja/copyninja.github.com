@@ -1,0 +1,84 @@
+--- 
+layout: post
+title: Installing TEI DTD's in Ubuntu
+published: true
+meta: 
+  _aioseop_title: Installing TEI DTD's on Ubuntu(Debian)
+  aktt_notify_twitter: "yes"
+  _utw_tags_: no tags
+  _edit_last: "23"
+  aktt_tweeted: "1"
+  _aioseop_keywords: dictd, english-kannada dictionary for dictd
+  _aioseop_description: "This post mentions about how to install the TEI DTD in Ubuntu (Debian based system). TEI DTD's are required if you want to write a FreeDict dictionaries "
+  _utw_tags_0: no tags
+tags: 
+- dictd
+- Dictionary Project
+- english-kannada dictionary for dictd
+type: post
+status: publish
+---
+<p style="text-align: justify">First step is to install TEI DTD's which are required to validate the dictionary XML markup. In the how to's which I found in freedict website it was mentioned it may be there in Debian repostiory to check use the following command</p>
+
+<blockquote>sudo apt-cache search TEI</blockquote>
+<p style="text-align: justify">Even though command gave me big list of output I couldn't understand which package tools to install because there was no package which exactly had the TEI name in it. So to be more specific I tried sudo aptitude search TEI which didn't gave me any output indicating TEI specific package was not there in Ubuntu repository. So I went for manual download and install. Below are the steps which I followed to install DTD's on my machine<!--more--></p>
+<p style="text-align: justify">1. Download the tei0.3.1.zip which was  mentioned in the How To's from this <a href="http://sourceforge.net/project/showfiles.php?group_id=106328&amp;package_id=114572" target="_blank">link</a> (P.S you may have to scroll down a bit to find this package).</p>
+<p style="text-align: justify">2. Next create a directory by name TEI in your home directory</p>
+
+<blockquote>mkdir ~/TEI</blockquote>
+<p style="text-align: justify">3. Copy the zip file to the TEI directory and unzip it. You can use following commands or you can do it from GUI</p>
+
+<blockquote>cp tei0.3.1.zip ~./TEI
+
+cd ~./TEI
+
+unzip tei0.3.1.zip</blockquote>
+<p style="text-align: justify">4. According to the How To's this zip file should have contained only DTD files but for my surprise I found a directory <strong>xml</strong> with 2 subdirectories <strong>tei</strong> and <strong>teip4</strong>. After a bit of searching i found the files mentioned in the directory <strong>teip4/schema/dtd/. </strong>For your references here is the list of file you will find in this directory</p>
+
+<pre style="text-align: justify">catalog.local   teiclas2.ent  teigen2.dtd   teind2.ent    teite2n.dtd
+<span style="text-decoration: line-through">catalog.tei</span>     teicore2.dtd  teigis2.ent   teinet2.dtd   teiterm2.dtd
+catalog.xml     teicorp2.dtd  teihdr2.dtd   teipl2.dtd    teiterm2.ent
+dummy.dtd       teidict2.dtd  teikey2.ent   teipros2.dtd  teitran2.dtd
+<span style="text-decoration: line-through">index.html</span>      teidict2.ent  teilink2.dtd  teisgml.dec   teitran2.ent
+index.xml       teidram2.dtd  teilink2.ent  teishd2.dtd   teitsd2.dtd
+tei2.dtd        teidram2.ent  teilite.dec   teispok2.dtd  teivers2.dtd
+teiana2.dtd     teifig2.dtd   teilitex.dec  teispok2.ent  teivers2.ent
+teiana2.ent     teifig2.ent   teilitex.dtd  teistr2.dtd   teiwsd2.dtd
+teiback2.dtd    teifron2.dtd  teilitex.ent  teitc2.dtd    teixlite.dec
+teicatalog.xml  teifs2.dtd    teimix2.dtd   teitc2.ent    <span style="color: #ff0000">xml.dcl</span>
+teicert2.dtd    teifsd2.dtd   teind2.dtd    teite2f.dtd   <span style="color: #ff0000">iso*ent</span></pre>
+<p style="text-align: justify">I copied the file list from the Free Dict how to and modified the list to reflect what you will find in the <strong>dtd</strong> directory. As you can see the file names in red are extra (which was not there in original list) <strong>iso*ent </strong>represents set of new files whoose name starts with <strong>iso</strong> and have extension <strong>.ent</strong>. You have 9 files which matches this regexp ;).</p>
+<p style="text-align: justify">5. Next step is to update the system catalog files to reflect the state of XML and SGML tree. The system catalog for SGML lies under <strong>/etc/sgml/</strong> and for XML its under <strong>/etc/xml</strong>. For updating the SGML catalog I used the <strong>update-catalog</strong> command. For updating the XML catalog there is <strong>update-xmlcatalog</strong> command but I was unable to figure out how to use it so manually updated the XML catalog.</p>
+<p style="text-align: justify">For updating the SGML catalog run following command</p>
+
+<blockquote>sudo update-catalog --add --super ~/TEI/xml/teip4/schema/dtd/catalog.local</blockquote>
+<p style="text-align: justify">One more thing in How To's it was mentioned <strong>catalog.tei</strong> should be used to update the catalog files. But there was no catalog.tei in the zip which I used but when I had a look at the content catalog.tei given in the How To's page  and contents of catalog.local both were exactly similar except to new iso*ent files in catalog.local so I decided to use catalog.local instead. If you are so curious what this command does just open <strong>/etc/sgml/catalog</strong> file in a text editor you will see it added only one line at end of the file. After executing the command your catalog file content should be like this</p>
+
+<blockquote>
+<p style="text-align: justify">--
+## ======================================================================
+## /etc/sgml/catalog : SGML Open Style super catalog
+## ======================================================================
+## Please use update-catalog(8) to modify this file.
+## ======================================================================
+--
+CATALOG /etc/sgml/xml-core.cat
+CATALOG /etc/sgml/sgml-data.cat
+CATALOG /etc/sgml/docbook-xml.cat
+CATALOG /etc/sgml/metacity-common.cat
+<strong>CATALOG /home/vasudev/TEI/xml/teip4/schema/dtd/catalog.local</strong></p></blockquote>
+<p style="text-align: justify">P.S. Path may differ depending on your system configurations.</p>
+<p style="text-align: justify">Now to update XML catalog file open /etc/xml/catalog in a text editor you have to be su for saving the file so use sudo with your text editor command</p>
+
+<blockquote>
+<p style="text-align: justify">eg: sudo gedit /etc/xml/catalog</p>
+</blockquote>
+<p style="text-align: justify">Add following line to end of the file before &lt;/catalog&gt; tag</p>
+
+<blockquote>
+<p style="text-align: justify">&lt;delegatePublic publicIdStartString="-//TEI P4//DTD Main Document Type//EN" catalog="file:///home/vasudev/TEI/xml/teip4/schema/dtd/catalog.xml"/&gt;
+&lt;delegateSystem systemIdStartString="http://www.tei-c.org/P4X/DTD/tei2.dtd" catalog="file:///home/vasudev/TEI/xml/teip4/schema/dtd/catalog.xml" /&gt;
+&lt;delegateSystem systemIdStartString="http://www.tei-c.org/Guidelines/DTD/tei2.dtd" catalog="file:///home/vasudev/TEI/xml/teip4/schema/dtd/catalog.xml" /&gt;</p></blockquote>
+<p style="text-align: justify">P.S: Change the path to catalog.xml file depending on your system.</p>
+<p style="text-align: justify">Ok thats it folks you are all set to go ahead with construction of dictionary. In my next posts i'm going to write on different ways of writing dictionary different tags that are used with their meaning followed by how to convert your tei file to dict dictionary using <strong>dict tools</strong>. Have a nice day C'ya.</p>
+<p style="text-align: justify">P.S: In the whole post I was mentioning this <a href="http://sourceforge.net/apps/mediawiki/freedict/index.php?title=FreeDict_HOWTO_-_4" target="_blank">How To's</a> ;)</p>

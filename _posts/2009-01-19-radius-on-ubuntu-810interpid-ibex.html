@@ -1,0 +1,40 @@
+--- 
+layout: post
+title: RADIUS on Ubuntu 8.10(Interpid Ibex)
+published: true
+meta: 
+  aktt_notify_twitter: "yes"
+  _edit_last: "23"
+  aktt_tweeted: "1"
+  _utw_tags_0: no tags
+tags: 
+- LINUX
+- radius
+- radius on ubuntu
+type: post
+status: publish
+---
+<p style="text-align: justify"><span style="color: #333333">After facing many problems in Mandriva 2009 I finally changed to Ubuntu 8.10 and I'm happy with Ubuntu now. I successfully installed Free RADIUS on Ubuntu. I want to tell a few things on installing Free RADIUS on Ubuntu in this post.</span></p>
+<p style="text-align: justify"><span style="color: #333333">First let me tell a few things about RADIUS. RADIUS(<a title="RFC 2856" href="http://www.ietf.org/rfc/rfc2865.txt" target="_blank">rfc 2865</a>) stands for<span style="color: #ff0000"> </span></span><span style="color: #333333"><span style="color: #ff0000">Remote Authentication Dial-In User Service</span> <span>is a protocol that provides Centralised access, Authorization and Accounting management for computers that connect to network resources. RADIUS provides AAA service (Authentication, Authorisation, Accounting). This is normally used by ISP's, for authentication in Wireless networks. It is also used for providing  IEEE 802.1x security. RADIUS supports many authentication methods which I'll elaborate on next post.</span></span></p>
+<p style="text-align: justify"><span style="color: #333333">First you need to install Free RADIUS use following command to get it</span></p>
+
+<blockquote><span style="color: #333333">$sudo apt-get install freeradius*</span></blockquote>
+<p style="text-align: justify"><span style="color: #333333">I mentioned * because I wanted to install all the Free RADIUS packages. Once installation is complete to check the free radius is working use follwing command</span></p>
+
+<blockquote><span style="color: #333333">sudo freeradius -X</span></blockquote>
+<p style="text-align: justify"><span style="color: #333333">I want to mention one thing here normally the RADIUS daemon is named </span><span style="color: #333333">radisud, <span>but in Ubuntu it is named as <span>freeradius. <span>The above command runs RADIUS daemon in debug mode and you will get a list of output on the screen. Don't worry just press Ctrl-C and kill the process. Now to start RADIUS daemon in normal mode type in following command.</span></span></span></span></p>
+
+<blockquote><span style="color: #333333">sudo /etc/init.d/freeradius start</span></blockquote>
+<p style="text-align: justify"><span style="color: #333333">Command prompt will return immediately. To check whether daemon is running type in following command</span></p>
+
+<blockquote><span style="color: #333333">ps -e | grep freeradius</span></blockquote>
+<p style="text-align: justify"><span style="color: #333333">You should get output like this</span></p>
+
+<blockquote><span style="color: #333333">5630 ?     00:00:00 freeradius</span></blockquote>
+<p style="text-align: justify"><span style="color: #333333">Well not getting it don't worry there is a small problem which is need to be fixed. When I checked the freeradius log situated in </span><span style="color: #333333"><span style="color: #ff0000">/var/log/freeradius/radius.log</span> </span><span style="color: #333333">I found problem is because daemon is not able to read its pid file</span><span style="color: #333333"> <span style="color: #ff0000">/var/run/radiusd/radiusd.pid</span>. <span>Now open the <span style="color: #ff0000">radiusd.conf</span> file, normally it is found in <span style="color: #ff0000">/etc/raddb/</span> folder but in Ubuntu its placed under <span style="color: #ff0000">/etc/freeradius/</span> folder.  Find for following line.</span></span></p>
+
+<blockquote><span style="color: #333333">run_dir = ${localstatedir}/run/radiusd/</span></blockquote>
+<p style="text-align: justify"><span style="color: #333333">change </span><span style="color: #333333">radiusd</span><span style="color: #333333"> to</span><span style="color: #333333"> freeradius</span><span style="color: #333333">. </span><span style="color: #333333">What actually happened here is freeradius daemon was trying to open radius.pid file in radiusd directory but the directory was renamed in Ubuntu as freeradius. Well now start the server as mentioned above and use grep in pipeline with ps -e to see whether it is running. You can also use radtest command to check this.</span></p>
+
+<blockquote><span style="color: #333333">radtest test secret localhost 1812 testing123</span></blockquote>
+<p style="text-align: justify"><span style="color: #333333">You may get </span><span style="color: #ff0000">Access-Reject</span><span style="color: #333333"> packet but it doesn't matter we just wanted to know whether daemon is runnig or not and we got our answer as it is running. In the above command </span><span style="color: #ff0000">test</span><span style="color: #333333"> is user name </span><span style="color: #ff0000">secret</span><span style="color: #333333"> is password for test. </span><span style="color: #ff0000">localhost</span><span style="color: #333333"> I think you know what it means :) </span><span style="color: #ff0000">1812</span><span style="color: #333333"> is the port number to which RADIUS daemon listens waiting for </span><span style="color: #ff0000">authentication packet</span><span style="color: #333333">. </span><span style="color: #ff0000">1813</span><span style="color: #333333"> is the port at which it listens for </span><span style="color: #ff0000">accounting packet</span><span style="color: #333333">, more details on this in my next post. <span style="color: #ff0000">testing123</span> is a </span><span style="color: #333333">shared secret key </span><span style="color: #333333">between NAS and RADIUS you must change this to strong value.</span></p>

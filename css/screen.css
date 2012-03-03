@@ -88,7 +88,7 @@ ul.posts {
 
 .title {
   font-family: AngelinaRegular,sans;
-  font-size: 250%;
+  font-size: 255%;
   color: #a00;
   font-weight: bold;
   margin-bottom: 0.5em;
@@ -96,7 +96,8 @@ ul.posts {
 
 .subheading {
     font-family: AngelinaRegular,sans-serif;
-    font-size: 150%;
+    text-decoration: underline;
+    font-size: 160%;
     color: #524312;
     font-weight: normal;
     margin-bottom: 4em;
@@ -211,11 +212,12 @@ ul.posts {
   /* Widgets */
 
 .widget {
-    border: 1px solid black;
-    text-align: center;
-    font-family: AngelinaRegular,sans-serif;
-    font-size: 170%;
-    font-weight: normal;
+    border: 1px black;
+    text-align: left;
+    text-decoration: underline;
+    font-family: LatoLight,sans-serif;
+    font-size: 150%;
+    font-weight: bold;
     padding-left: 2em;
 }
 
@@ -278,4 +280,11 @@ ul.posts {
 .main-menu-item-selected{
     background:url(/images/selected.png) no-repeat 0px 7px;
     color:#000;
+}
+
+blockquote{
+    margin:10px 0 20px 30px;
+    color:#777;
+    border-left:5px #aaaaab;
+    padding:15px;
 }

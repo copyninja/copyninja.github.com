@@ -1,0 +1,32 @@
+--- 
+layout: post
+title: FreeDict Basics
+published: true
+meta: 
+  _aioseop_title: FreeDict Basics
+  aktt_notify_twitter: "yes"
+  _utw_tags_: no tags
+  _edit_last: "23"
+  aktt_tweeted: "1"
+  _aioseop_keywords: dictd, english-kannada dictionary for dictd
+  _aioseop_description: This post talks about basic things which should be understood before creating the FreeDict dictionaries
+  _utw_tags_0: no tags
+tags: 
+- dict
+- Dictionary Project
+- english-kannada dictionary for dictd
+type: post
+status: publish
+---
+<p style="text-align: justify">FreeDict dictionaries are written using XML markup language which adhere to <a href="http://www.tei-c.org/" target="_blank">Text Encoding Initiatives</a> DTD. The main reason for using XML markup is it makes the dictionaries platform and application independent which means if you develop dictionary in this format its not only meant for Dictd you can convert this XML markup to become suitable with any other dictionary using proper tool. I'll tell about the conversion in my later posts. To know more about the TEI DTD and its pro's and con's please refer this <a href="http://www.freedict.org/howto/ch02.html" target="_blank">link.</a></p>
+
+FreeDict recommends use of <a href="http://www.gnu.org/licenses/gpl.html" target="_blank">GNU Public License v2</a> (GPL v2) or <a href="http://www.gnu.org/copyleft/fdl.html" target="_blank">GNU Free Documentation License</a>. To read more on licensing please refer this <a href="http://sourceforge.net/apps/mediawiki/freedict/index.php?title=FreeDict_HOWTO_-_1" target="_blank">link</a>.
+<p style="text-align: justify">Its better to write the dictionary in Unicode format especially if dictionary belongs to some local language (like Kannada). So make sure that the text editor which you are using supports unicode (UTF-8 encoding). Here is a list of Text Editor which supports Unicode Emacs, Xemacs, Gedit, Kedit etc. Wisely choose your editor before jumping to creating the dictionary.</p>
+
+So here is the How To's from the Free Dict org which gives more info on the topics I've mentioned here
+<ol>
+	<li><a href="http://www.freedict.org/howto/ch01.html" target="_blank">Licensing</a></li>
+	<li><a href="http://www.freedict.org/howto/ch02.html">XML Markup</a></li>
+	<li><a href="http://www.freedict.org/howto/ch03.html" target="_blank">Unicode</a></li>
+</ol>
+<p style="text-align: justify">These are the basics read it carefully. In my next post i'm going to tell how I installed the TEI DTD's and updated the system wide catalog in Ubuntu Karmic (hope it will work fine on debian also).</p>
