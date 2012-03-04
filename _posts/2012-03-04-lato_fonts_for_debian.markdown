@@ -4,7 +4,7 @@ title: "Lato Fonts for Debian"
 ---
 
 For giving new look to my blog I was trying out a lot of fonts from the
-*[FontSquirrel](http://fontsquirrel.com) * website but none of them satisfied
+*[FontSquirrel](http://fontsquirrel.com)* website but none of them satisfied
 my taste. While searching for the fonts *identi.ca* website fonts attracted
 my notice and the font used was *Lato*. I found it and used in this website.
 
