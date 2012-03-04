@@ -17,7 +17,7 @@ html, body {
 
 body {
   background-color: white;
-  font: 13.34px BitstreamVeraSerifRoman, Arial, clean, sans-serif;
+  font: 13.34px LatoRegular, Arial, clean, sans-serif;
   *font-size: small;
   text-align: left;
 }
@@ -68,7 +68,7 @@ ul.posts {
 
   ul.posts span {
     color: #aaa;
-    font-family: BitstreamVeraSerifRoman, monospace;
+    font-family: LatoRegular, monospace;
     font-size: 80%;
   }
 
@@ -216,7 +216,7 @@ ul.posts {
     text-align: left;
     text-decoration: underline;
     font-family: LatoLight,sans-serif;
-    font-size: 150%;
+    font-size: 15px;
     font-weight: bold;
     padding-left: 2em;
 }
@@ -234,7 +234,7 @@ ul.posts {
 /* Post Related */
 
 .posteddate {
-    font-family: BitstreamVeraSerifRoman,sans-serif;
+    font-family: LatoItalic,sans-serif;
     font-size: 50%;
     font-style: italic;
     color: #808080;    
@@ -252,8 +252,9 @@ ul.posts {
 }
 
 .postbody {
-    font-family: LatoLight,sans-serif;
+    font-family: LatoRegular,sans-serif;
     font-size: 15px;
+    font-weight: normal;
 }
 
 
@@ -284,6 +285,7 @@ ul.posts {
 
 blockquote{
     margin:10px 0 20px 30px;
+    font-family: LatoItalic,sans-serif;
     color:#777;
     border-left:5px #aaaaab;
     padding:15px;
