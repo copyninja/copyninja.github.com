@@ -8,6 +8,8 @@ layout: default
 </div>
 <div class="postbody">
   {{ content }}
+  <br/>
+  {% if page.date %}{% include meta.md %}{% endif %}  
 </div>
 <div id="related">
   <h2>Related Posts</h2>

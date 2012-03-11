@@ -53,6 +53,19 @@
 <div class="postbody">
   <div xmlns="http://www.w3.org/1999/xhtml"><div align="justify">This is my first module written in Python. I wanted to extract the information from Apache access log line so searched for existing modules, even though I found one i felt logic is too complicated, I wanted a very simple module. So thought why don't I write my own module to parse log lines. Since I designed this to meet my requirements it may not be a complete module. It can parse and give you information from the Apache access log lines which is either common or combined format. If you don't know what is common and combined format refer this <a href="http://httpd.apache.org/docs/2.1/logs.html" target="_blank" title="Apache Logs">documentation.</a> This module doesn't validate the lines to check if its really Apache log lines it depends on user to pass correct line. I've also added another simple module which can get you information from error log line. The module is available in <a href="http://gitorious.org/apache-log-parser-module/" target="_blank" title="Apache Log Line Parser module">gitorious</a><br /><br /><a name='more'></a>&nbsp;</div><div align="justify">Below is the code which shows how to use this module.</div><pre class="python" name="code">import apachelogparser as a<br />f = open("/var/log/apache2/access.log") #change it to suit log location in your machine<br />line = f.readline()<br />log_parser = a.ApacheAccessLogParser()<br />log_parser.parse(line)<br /></pre><div align="justify">The fields of log_parser object will be filled with information extracted from the line. Please refer the <a href="http://gitorious.org/apache-log-parser-module/apache-log-parser-module/blobs/master/README" target="_blank" title="README">README</a> in documentation for information on the field. Similarly you can extract information from the error log. Well hope this module helps you :). Soon will be publishing the project for which I wrote this module till then.</div><div align="justify">Vasudev</div></div>
 
+  <br/>
+  <div class="meta_wrapper">
+<ul class="tag_list_in_post">
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/apache">apache</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/Programming">Programming</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/python">python</a></li>
+    
+</ul>
+</div>
+  
 </div>
 <div id="related">
   <h2>Related Posts</h2>

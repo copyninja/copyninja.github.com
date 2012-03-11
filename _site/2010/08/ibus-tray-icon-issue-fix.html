@@ -53,6 +53,21 @@
 <div class="postbody">
   <div xmlns="http://www.w3.org/1999/xhtml"><div align="justify">I use Debian Sid with KDE 4.4 and use iBus as IME for using Indic languages. But recently the iBus tray icon was not loading and a white patch used to appear which looked ugly. To see what is going on I ran ibus in debug mode using following command.</div><blockquote><div align="justify"><b><i>ibus-daemon -xvr</i></b></div></blockquote>I got the following message in the terminal<br /><blockquote><i>/usr/share/ibus/ui/gtk/icon.py:35: GtkWarning: Could not find the icon 'ibus-keyboard'. The 'hicolor' theme</i></blockquote><blockquote><i>was not found either, perhaps you need to install it.</i></blockquote><blockquote><i>You can get a copy from:</i></blockquote><blockquote><i> http://icon-theme.freedesktop.org/releases</i></blockquote><div align="justify">The message clearly indicates the Gtk system was unable to find out icon named <i>ibus-keyboard</i>. To debug this issue I opened the file <i>/usr/share/ibus/ui/gtk/icon.py</i> to see if the name or path of icon is in the file. Frankly I'm a noob in PyGtk programming and didn't understand any content present with in the file, but a line attracted my attention and thought of trying it out. Following is what I did in Python console.<br /><a name='more'></a></div><blockquote><div align="justify"><i>Python 2.6.6rc1+ (r266rc1:83691, Aug 5 2010, 19:21:55) </i></div></blockquote><blockquote><i>[GCC 4.4.5 20100728 (prerelease)] on linux2</i></blockquote><blockquote><i>Type "help", "copyright", "credits" or "license" for more information.</i></blockquote><blockquote><i>&gt;&gt;&gt; import gtk</i></blockquote><blockquote><i>** Message: pygobject_register_sinkfunc is deprecated (GtkWindow)</i></blockquote><blockquote><i>** Message: pygobject_register_sinkfunc is deprecated (GtkInvisible)</i></blockquote><blockquote><i>** Message: pygobject_register_sinkfunc is deprecated (GtkObject)</i></blockquote><blockquote><i>/usr/lib/pymodules/python2.6/gtk-2.0/gtk/__init__.py:40: RuntimeWarning: tp_compare didn't return -1 or -2 for exception</i></blockquote><blockquote><i> from gtk import _gtk</i></blockquote><blockquote><i>Traceback (most recent call last):</i></blockquote><blockquote><i> File "/usr/lib/pymodules/python2.6/gtk-2.0/gi/__init__.py", line 27, in &lt;module&gt;</i></blockquote><blockquote><i> from gi.repository import GObject</i></blockquote><blockquote><i>ImportError: cannot import name GObject</i></blockquote><blockquote><i>&gt;&gt;&gt; </i><b><i>icon_theme = gtk.icon_theme_get_default()</i></b></blockquote><blockquote><b><i>&gt;&gt;&gt; icon_theme.get_search_path() </i></b></blockquote><blockquote><b><i>('/home/vasudev/.icons', '/home/vasudev/.local/share/icons', '$XDG_DATA_DIRS/icons', '/usr/share/akonadi/agents/icons', '/usr/share/akonadi/agents/icons', '$XDG_DATA_DIRS/pixmaps', '/usr/share/akonadi/agents/pixmaps', '/usr/share/akonadi/agents/pixmaps')</i></b></blockquote><blockquote><b><i>&gt;&gt;&gt; </i></b></blockquote>I have made the line which gave me a hint to find this fix bold. Clearly the normal Gtk icon folder path is not present in the image search path. (i.e <i>/usr/share/icon </i>where the iBus icon is present). I'm not sure whether this is a bug or normal behaviour but whatever it is below is the fix which makes the iBus icon reappear in tray.<br /><blockquote><i>ln /usr/share/icons/hicolor/scalable/apps/ibus-keyboard.svg ~/.local/share/icons/</i></blockquote>This is what above command did, it created a <a href="http://en.wikipedia.org/wiki/Hard_link" target="_blank" title="Hard Links">hard link </a>of the icon in one of the directory where Gtk module is looking for icon. Thats it relaunch the iBus and tray icon should be fixed by now ! :)</div>
 
+  <br/>
+  <div class="meta_wrapper">
+<ul class="tag_list_in_post">
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/hack">hack</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/ibus">ibus</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/kde">kde</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/LINUX">LINUX</a></li>
+    
+</ul>
+</div>
+  
 </div>
 <div id="related">
   <h2>Related Posts</h2>

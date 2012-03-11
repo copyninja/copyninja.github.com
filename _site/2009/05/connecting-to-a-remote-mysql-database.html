@@ -53,6 +53,15 @@
 <div class="postbody">
   <div style="-webkit-background-clip: initial; -webkit-background-origin: initial; background-attachment: initial; background-color: white; background-image: initial; background-position: initial initial; background-repeat: initial; color: black; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 10px; font: normal normal normal 13px/19px Georgia, 'Times New Roman', 'Bitstream Charter', Times, serif; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px; padding-bottom: 0.6em; padding-left: 0.6em; padding-right: 0.6em; padding-top: 0.6em;"><div mce_style="text-align: justify" style="text-align: justify;">In my project I needed to connect proxy server program running on the client machine to the MySQL database on the server machine. Each time I was trying to connect to MySQL server I was getting error message saying</div><blockquote><div mce_style="text-align: justify" style="text-align: justify;"><span class="Apple-style-span" mce_name="em" mce_style="font-style: italic;" style="font-style: italic;">Access Denied to user net@<client address="" ip=""> using password(yes)</client></span></div></blockquote><div mce_style="text-align: justify" style="text-align: justify;">I tried to find a solution and in one of the forums they had mentioned that to connect to MySQL DB from a remote machine we need to create a MySQL user on the server as</div><blockquote><div style="text-align: justify;">someuser@<span class="Apple-style-span" mce_name="em" mce_style="font-style: italic;" style="font-style: italic;"><remote-machine-ip></remote-machine-ip></span></div></blockquote><div mce_style="text-align: justify" style="text-align: justify;"></div><div style="text-align: justify;">Since my client program is designed to run on many client machine in parallel creating a user for each client is not feasible and also client machines will be getting IP address from DHCP its not possible to create&nbsp;<span class="Apple-style-span" mce_name="em" mce_style="font-style: italic;" style="font-style: italic;">user@<ip-address>.</ip-address></span><br /></div><div style="text-align: justify;">Finally I tried the regular expression of SQL i.e. % which literally means anything (ip,hostname or anything). So I created a user in the server as follows<br /></div><br /><blockquote><div mce_style="text-align: justify" style="text-align: justify;"><code>CREATE USER 'net'@'%' IDENTIFIED BY 'some password'<br />GRANT ALL PRIVILEGES ON some_db.* TO 'net'@'%';</code></div></blockquote><div mce_style="text-align: justify" style="text-align: justify;">Well that did it now I'm able to access MySQL DB from any client machine. But be careful in providing privileges to this user since it can be accessed from anywhere providing all privileges may lead to serious security issues.</div></div>
 
+  <br/>
+  <div class="meta_wrapper">
+<ul class="tag_list_in_post">
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/remote mysql connect">remote mysql connect</a></li>
+    
+</ul>
+</div>
+  
 </div>
 <div id="related">
   <h2>Related Posts</h2>

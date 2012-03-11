@@ -53,6 +53,21 @@
 <div class="postbody">
   <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">Recently I had to compile an C application for i386 architecture but I was running x86_64 Debian Wheezy. The libraries used for linking to create the final application where compiled for i386 arch and GCC was skipping them as it was not compatible one. I knew it is possible to cross compile using GCC but I was a noob to cross compilation. Searching in the internet took me to sites which suggests use of tool chains like binutils. But my program was too simple to undergo through all this. Finally I posted finally this question [1] on StackOverflow, and thanks to guys at Stackoverflow I got immidiate answer!</div><br /><div style="text-align: justify;">Well yeah as told its pretty easy for corss compiling for i386 architecture in gcc only thing is needed is you add <i><b>-m32</b></i>&nbsp; in CFLAGS of your make file. You may also add <i><b>-march=i386</b></i> to optimize it for i386 architecture. Yes you guessed it right this won't work simply you need to have entire i386 compatible libc and libc-dev files so if you are on Debian based system then use following command to install it.</div><blockquote><i>sudo apt-get install ia32-libs ia32-libs-dev libc6-dev-i386</i></blockquote><div style="text-align: justify;">If you want to know about other distro's well you better refer your distribution documentation.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Yes this will also works in <i>clang </i>compiler. </div><br />[1] http://stackoverflow.com/questions/7219256/cross-compiling-a-c-application-using-gcc<br /><br />Signing off<br />-- Vasudev</div>
 
+  <br/>
+  <div class="meta_wrapper">
+<ul class="tag_list_in_post">
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/C">C</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/gcc">gcc</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/LINUX">LINUX</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/Programming">Programming</a></li>
+    
+</ul>
+</div>
+  
 </div>
 <div id="related">
   <h2>Related Posts</h2>

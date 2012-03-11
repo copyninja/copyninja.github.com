@@ -290,3 +290,67 @@ blockquote{
     border-left:5px #aaaaab;
     padding:15px;
 }
+
+/* Charlipark's */
+.meta_wrapper{
+    border:1px solid #C9C6C3;
+    border-width:1px 0;
+    color:#666;
+    font-size:12px;
+    line-height:20px;
+    margin:0 0 20px;
+    padding:1px 0;
+    text-transform:uppercase}
+
+ul.tags li{
+    border-left:1px solid #ccc;
+    display:inline;
+    list-style:none;
+    margin:0;
+    padding:0 8px;
+    position:relative;
+}
+ul.tags li:first-child{
+    border:0;
+    padding-left:0
+}
+ul ul li{
+    list-style:circle;
+}
+
+li.archive_list{
+    list-style:none;
+    margin:0;
+    padding-bottom:10px;
+}
+li.inline{
+    display:inline
+}
+li.nav_list_item{
+    display:inline-block;
+    font-size:18px;
+    margin:0;
+    position:relative;
+    width:90px;
+}
+li.tag_list_item{
+    line-height:1;
+    list-style:none;
+    margin:0;
+}
+
+a.tag_list_link{
+    border-left: 1px solid #ccc;
+    color:#888;
+    font-size:14px;
+    font-variant:small-caps;
+    margin:0;
+    padding: 0 6px;
+    text-transform:lowercase;
+}
+a.tag_list_link:first-child{
+    border:0
+}
+a.tag_list_link:hover{
+    color:#444;
+}

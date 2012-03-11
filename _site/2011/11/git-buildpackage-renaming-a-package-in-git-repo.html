@@ -53,6 +53,19 @@
 <div class="postbody">
   <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">Just to give a background I've been working on renaming <i>ttf-indic-fonts </i>package in <i><a href="http://alioth.debian.org/projects/debian-in">Debian-IN</a> </i>team. And after packaging the <i>Lohit and Samyak fonts </i>I sent a mail to <i>debian-in-workers </i>mailing list giving the current status. And after a short <a href="http://lists.alioth.debian.org/pipermail/debian-in-workers/2011-November/001734.html">discussion</a> <i>Christian bubulle Perrier</i> suggested me to use ISO 15924 language codes rather than ISO script code (2 letters).</div><br /><div style="text-align: justify;">We are now using the Git VCS for maintaining the packages and as known the <i>git-buildpackage </i>uses a branch called <i>pristine-tar&nbsp; </i>and <i>upstream </i>branch to regenerate the <i>orig tar ball. </i>So if you only change the package name in <i>control </i>and <i>changelog </i>and <i>git-buildpackage </i>fails badly saying it can't create <i>orig tar ball</i>. So do the following</div><div style="text-align: justify;"><br /></div><blockquote class="tr_bq"><i>git checkout pristine-tar</i></blockquote><blockquote class="tr_bq"><i>git mv package_version.orig.tar.gz.delta newpackage_version.orig.tar.gz</i>.<i>delta</i><br /><i>git mv package_version.orig.tar.gz.id newpackage_version.orig.tar.gz.id</i></blockquote><div style="text-align: justify;"><i> </i>Here <i>package</i> is old package name and <i>newpackage</i> is new name for the package. Next commit the changes. Now the important point if you simply write <i>renamed the package </i>as new commit message the when you run <i>git-buildpackage </i>you will get following warning</div><blockquote class="tr_bq"><i>git-buildpackage: warning renamed pristine-tar data unable to detect compression type assuming gzip</i></blockquote><div style="text-align: justify;">After struggling a lot finally figured that <i>pristine-tar </i>command uses commit message to assume the compression type. Yes thats how pristine-tar is working so you should write commit message similar to the default one created by <i>git-import-dsc </i>when first importing package to repository. To be more precise commit message should be some thing like below.</div><blockquote class="tr_bq"><div style="text-align: justify;"><i>pristine-tar data for newpackage_version.orig.tar.gz</i></div></blockquote>Replace is <i>newpackage_version.orig.tar.gz </i>with actual orig tar ball name and in case your package is bzip then replace gz with bz2. And you have successfully renamed the package in git repository.</div>
 
+  <br/>
+  <div class="meta_wrapper">
+<ul class="tag_list_in_post">
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/Debian">Debian</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/hack">hack</a></li>
+    
+    <li class="inline tag_list_item"><a class="tag_list_link" href="/tag/LINUX">LINUX</a></li>
+    
+</ul>
+</div>
+  
 </div>
 <div id="related">
   <h2>Related Posts</h2>

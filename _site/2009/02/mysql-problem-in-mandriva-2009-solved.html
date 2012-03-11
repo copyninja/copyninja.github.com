@@ -53,6 +53,13 @@
 <div class="postbody">
   <div mce_style="text-align: justify" style="text-align: justify;">I had mentioned in my <a href="http://vasudevkamath.techfiz.com/2009/01/06/mysql-failing-to-start-in-mandriva-2009/">techfiz blog</a>&nbsp; about MySQL server failing to get started in the Mandriva 2009. When you try to start <span style="color: #339966;">mysqld</span> you may get this error.</div><blockquote>ERROR: hostname cannot be localhost, mysql_install_db is quite unstable<br />https://qa.mandriva.com/show_bug.cgi?id=38398</blockquote><div mce_style="text-align: justify" style="text-align: justify;">The link in the error message leads to Mandriva forum which tells to uninstall and then re-install it with MySQL package of Mandriva 2008. But this didn't solve the problem for me. Actually solution is simple. As you can see in the error message it tells that host name can't be localhost. So I tried changin the host name and it actually worked !!. Try following commands.</div><blockquote>[root@localhost vasudev]# hostname vasudev</blockquote><div mce_style="text-align: justify" style="text-align: justify;">This command changes hostname to my name instead of localhost. Now try starting mysqld and you will get some warning message which is shown below</div><blockquote>[root@localhost vasudev]# /etc/init.d/mysqld start<br />Initializing MySQL database:<br />WARNING: The host 'vasudev' could not be looked up with resolveip.<br />This probably means that your libc libraries are not 100 % compatible<br />with this binary MySQL version. The MySQL daemon, mysqld, should work<br />normally with the exception that host name resolving will not work.<br />This means that you should use IP addresses instead of hostnames<br />when specifying MySQL privileges !</blockquote><div mce_style="text-align: justify" style="text-align: justify;">This is just because daemon is not able to find your new host name in <span style="color: green;">/etc/hosts</span> file, Just chage the localhost in /etc/hosts file to your new host name and restart the mysqld and your problem is solved. Once you change the /etc/hosts file it should look similar to this.</div><blockquote><span style="color: #339966;">127.0.0.1&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; vasudev</span></blockquote><div mce_style="text-align: justify" style="text-align: justify;">I hope this will solve the problem for all of you :)</div>
 
+  <br/>
+  <div class="meta_wrapper">
+<ul class="tag_list_in_post">
+    
+</ul>
+</div>
+  
 </div>
 <div id="related">
   <h2>Related Posts</h2>
