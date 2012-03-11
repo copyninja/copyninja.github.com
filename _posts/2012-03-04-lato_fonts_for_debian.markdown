@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Lato Fonts for Debian"
+tags:
+- Debian
+- packaging
+- font
 ---
 
 For giving new look to my blog I was trying out a lot of fonts from the

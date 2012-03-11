@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "ttf-indic-fonts to fonts-indic transition complete!"
+tags:
+- Debian
+- news
 ---
 
 We in Debian-IN team where maintaining ttf-indic-fonts a set of fonts for all 

@@ -1,6 +1,9 @@
 ---
 layout: post
 title: "Hello Planet! (Debian)"
+tags:
+- Debian
+- Intro
 ---
 
 Hello Debian Folks!,
