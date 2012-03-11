@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Installing TEI DTD's in Ubuntu</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  Installing TEI DTD's in Ubuntu
+</div>
+<div class="postbody">
+  <p style="text-align: justify">First step is to install TEI DTD's which are required to validate the dictionary XML markup. In the how to's which I found in freedict website it was mentioned it may be there in Debian repostiory to check use the following command</p>
+
+<blockquote>sudo apt-cache search TEI</blockquote>
+<p style="text-align: justify">Even though command gave me big list of output I couldn't understand which package tools to install because there was no package which exactly had the TEI name in it. So to be more specific I tried sudo aptitude search TEI which didn't gave me any output indicating TEI specific package was not there in Ubuntu repository. So I went for manual download and install. Below are the steps which I followed to install DTD's on my machine<!--more--></p>
+<p style="text-align: justify">1. Download the tei0.3.1.zip which was  mentioned in the How To's from this <a href="http://sourceforge.net/project/showfiles.php?group_id=106328&amp;package_id=114572" target="_blank">link</a> (P.S you may have to scroll down a bit to find this package).</p>
+<p style="text-align: justify">2. Next create a directory by name TEI in your home directory</p>
+
+<blockquote>mkdir ~/TEI</blockquote>
+<p style="text-align: justify">3. Copy the zip file to the TEI directory and unzip it. You can use following commands or you can do it from GUI</p>
+
+<blockquote>cp tei0.3.1.zip ~./TEI
+
+cd ~./TEI
+
+unzip tei0.3.1.zip</blockquote>
+<p style="text-align: justify">4. According to the How To's this zip file should have contained only DTD files but for my surprise I found a directory <strong>xml</strong> with 2 subdirectories <strong>tei</strong> and <strong>teip4</strong>. After a bit of searching i found the files mentioned in the directory <strong>teip4/schema/dtd/. </strong>For your references here is the list of file you will find in this directory</p>
+
+<pre style="text-align: justify">catalog.local   teiclas2.ent  teigen2.dtd   teind2.ent    teite2n.dtd
+<span style="text-decoration: line-through">catalog.tei</span>     teicore2.dtd  teigis2.ent   teinet2.dtd   teiterm2.dtd
+catalog.xml     teicorp2.dtd  teihdr2.dtd   teipl2.dtd    teiterm2.ent
+dummy.dtd       teidict2.dtd  teikey2.ent   teipros2.dtd  teitran2.dtd
+<span style="text-decoration: line-through">index.html</span>      teidict2.ent  teilink2.dtd  teisgml.dec   teitran2.ent
+index.xml       teidram2.dtd  teilink2.ent  teishd2.dtd   teitsd2.dtd
+tei2.dtd        teidram2.ent  teilite.dec   teispok2.dtd  teivers2.dtd
+teiana2.dtd     teifig2.dtd   teilitex.dec  teispok2.ent  teivers2.ent
+teiana2.ent     teifig2.ent   teilitex.dtd  teistr2.dtd   teiwsd2.dtd
+teiback2.dtd    teifron2.dtd  teilitex.ent  teitc2.dtd    teixlite.dec
+teicatalog.xml  teifs2.dtd    teimix2.dtd   teitc2.ent    <span style="color: #ff0000">xml.dcl</span>
+teicert2.dtd    teifsd2.dtd   teind2.dtd    teite2f.dtd   <span style="color: #ff0000">iso*ent</span></pre>
+<p style="text-align: justify">I copied the file list from the Free Dict how to and modified the list to reflect what you will find in the <strong>dtd</strong> directory. As you can see the file names in red are extra (which was not there in original list) <strong>iso*ent </strong>represents set of new files whoose name starts with <strong>iso</strong> and have extension <strong>.ent</strong>. You have 9 files which matches this regexp ;).</p>
+<p style="text-align: justify">5. Next step is to update the system catalog files to reflect the state of XML and SGML tree. The system catalog for SGML lies under <strong>/etc/sgml/</strong> and for XML its under <strong>/etc/xml</strong>. For updating the SGML catalog I used the <strong>update-catalog</strong> command. For updating the XML catalog there is <strong>update-xmlcatalog</strong> command but I was unable to figure out how to use it so manually updated the XML catalog.</p>
+<p style="text-align: justify">For updating the SGML catalog run following command</p>
+
+<blockquote>sudo update-catalog --add --super ~/TEI/xml/teip4/schema/dtd/catalog.local</blockquote>
+<p style="text-align: justify">One more thing in How To's it was mentioned <strong>catalog.tei</strong> should be used to update the catalog files. But there was no catalog.tei in the zip which I used but when I had a look at the content catalog.tei given in the How To's page  and contents of catalog.local both were exactly similar except to new iso*ent files in catalog.local so I decided to use catalog.local instead. If you are so curious what this command does just open <strong>/etc/sgml/catalog</strong> file in a text editor you will see it added only one line at end of the file. After executing the command your catalog file content should be like this</p>
+
+<blockquote>
+<p style="text-align: justify">--
+## ======================================================================
+## /etc/sgml/catalog : SGML Open Style super catalog
+## ======================================================================
+## Please use update-catalog(8) to modify this file.
+## ======================================================================
+--
+CATALOG /etc/sgml/xml-core.cat
+CATALOG /etc/sgml/sgml-data.cat
+CATALOG /etc/sgml/docbook-xml.cat
+CATALOG /etc/sgml/metacity-common.cat
+<strong>CATALOG /home/vasudev/TEI/xml/teip4/schema/dtd/catalog.local</strong></p></blockquote>
+<p style="text-align: justify">P.S. Path may differ depending on your system configurations.</p>
+<p style="text-align: justify">Now to update XML catalog file open /etc/xml/catalog in a text editor you have to be su for saving the file so use sudo with your text editor command</p>
+
+<blockquote>
+<p style="text-align: justify">eg: sudo gedit /etc/xml/catalog</p>
+</blockquote>
+<p style="text-align: justify">Add following line to end of the file before &lt;/catalog&gt; tag</p>
+
+<blockquote>
+<p style="text-align: justify">&lt;delegatePublic publicIdStartString="-//TEI P4//DTD Main Document Type//EN" catalog="file:///home/vasudev/TEI/xml/teip4/schema/dtd/catalog.xml"/&gt;
+&lt;delegateSystem systemIdStartString="http://www.tei-c.org/P4X/DTD/tei2.dtd" catalog="file:///home/vasudev/TEI/xml/teip4/schema/dtd/catalog.xml" /&gt;
+&lt;delegateSystem systemIdStartString="http://www.tei-c.org/Guidelines/DTD/tei2.dtd" catalog="file:///home/vasudev/TEI/xml/teip4/schema/dtd/catalog.xml" /&gt;</p></blockquote>
+<p style="text-align: justify">P.S: Change the path to catalog.xml file depending on your system.</p>
+<p style="text-align: justify">Ok thats it folks you are all set to go ahead with construction of dictionary. In my next posts i'm going to write on different ways of writing dictionary different tags that are used with their meaning followed by how to convert your tei file to dict dictionary using <strong>dict tools</strong>. Have a nice day C'ya.</p>
+<p style="text-align: justify">P.S: In the whole post I was mentioning this <a href="http://sourceforge.net/apps/mediawiki/freedict/index.php?title=FreeDict_HOWTO_-_4" target="_blank">How To's</a> ;)</p>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+

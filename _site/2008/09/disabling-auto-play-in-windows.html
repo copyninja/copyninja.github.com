@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Disabling Auto Play in Windows</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  Disabling Auto Play in Windows
+</div>
+<div class="postbody">
+  All of you might have come across the autoplay when we insert any CD or DVD or USB Device. A pop up window will asking how do you want to open the drive. What actually happens here is that OS reads your removable device either it may be a USB or it may be CD or DVD to see what are the possible applications that you can use to open the drive. And if the USB drive is infected with a autorun file when you click open virus will enter into your system. This autoplay feature is used by most of famous antivirus software (nod32,avast) to catch any possible infections as soon as you insert your USB to the machine. Once you disable antivirus doesn't detect virus as soon as you insert your pen drive, but don't worry it will catch the virus once you scan your drive. I suggest you disable this autoplay feature in your computer.<br />The steps for disabling autoplay are<br />1. Click on start then on<b> run</b> and in the run window type <b>gpedit.msc </b>and click OK.<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_Pms4ehFPMfI/SN5VwJjfWFI/AAAAAAAAAWA/u8CQhOWrV7k/s1600-h/run.bmp" imageanchor="1" linkindex="71" style="margin-left: 1em; margin-right: 1em;"><img src="http://4.bp.blogspot.com/_Pms4ehFPMfI/SN5VwJjfWFI/AAAAAAAAAWA/f1afd_EtTTE/s400-R/run.bmp" border="0" /></a> </div><div class="separator" style="clear: both; text-align: left;">2. The group policy editor window will open as shown below.</div><div class="separator" style="clear: both; text-align: left;"> </div><div style="text-align: center;"><a href="http://2.bp.blogspot.com/_Pms4ehFPMfI/SN5Za2dWehI/AAAAAAAAAWQ/eFT6EAfXaN0/s1600-h/grouppolicyeditor.JPG" imageanchor="1" linkindex="72" style="margin-left: 1em; margin-right: 1em;"><img src="http://2.bp.blogspot.com/_Pms4ehFPMfI/SN5Za2dWehI/AAAAAAAAAWQ/Tdk7eiYEafk/s400-R/grouppolicyeditor.JPG" border="0" /></a> </div><div class="separator" style="clear: both; text-align: left;"> 3. In the <b>Computer configuration</b> collapse the Last option that is "<b>Administrative Template</b>". In the Administrative Template select "<b>System</b>" options (do not double click or collapse it). In the split window you will see lot of options. These steps are shown below.</div><div class="separator" style="clear: both; text-align: left;"></div><div style="text-align: center;"><a href="http://3.bp.blogspot.com/_Pms4ehFPMfI/SN5bwTfJ-RI/AAAAAAAAAWY/7yMIM9GUV4M/s1600-h/system.JPG" imageanchor="1" linkindex="73" style="margin-left: 1em; margin-right: 1em;"><img src="http://3.bp.blogspot.com/_Pms4ehFPMfI/SN5bwTfJ-RI/AAAAAAAAAWY/UA2IUJSmaEE/s400-R/system.JPG" border="0" /></a> </div><div class="separator" style="clear: both; text-align: left;">4. In the split window scroll a little down and select option "<b>turn off auto play </b>" and double click on it, you will get a pop up window as shown below.</div><div class="separator" style="clear: both; text-align: center;"> <a href="http://3.bp.blogspot.com/_Pms4ehFPMfI/SN5dlJM-dGI/AAAAAAAAAWg/UqD48HCOQOo/s1600-h/turnoff.JPG" imageanchor="1" linkindex="74" style="margin-left: 1em; margin-right: 1em;"><img src="http://3.bp.blogspot.com/_Pms4ehFPMfI/SN5dlJM-dGI/AAAAAAAAAWg/2EiWTWCczk8/s400-R/turnoff.JPG" border="0" /></a> </div><div class="separator" style="clear: both; text-align: center;"></div><div style="text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/_Pms4ehFPMfI/SN5eSYQqiTI/AAAAAAAAAWo/70J2PK_bxrU/s1600-h/autoplayen.JPG" imageanchor="1" linkindex="75" style="margin-left: 1em; margin-right: 1em;"><img src="http://4.bp.blogspot.com/_Pms4ehFPMfI/SN5eSYQqiTI/AAAAAAAAAWo/6LP0G9_kI-4/s400-R/autoplayen.JPG" border="0" /></a> </div><div class="separator" style="clear: both; text-align: left;"> 5. By default the auto play is enabled in your computer i.e Turn Off auto play is disabled as shown in above picture. Now select <b>Enabled</b>. Now from the drop down list <b>Turn Off Auto Play on</b> select <b>All drives</b>. (You will be given 2 options on CD-ROM and All drives I suggest you disable auto play on all drives). As shown below.</div><div class="separator" style="clear: both; text-align: left;"></div><div style="text-align: center;"><a href="http://3.bp.blogspot.com/_Pms4ehFPMfI/SN5hawS3ElI/AAAAAAAAAWw/58muW_2efkA/s1600-h/enabled.JPG" imageanchor="1" linkindex="76" style="margin-left: 1em; margin-right: 1em;"><img src="http://3.bp.blogspot.com/_Pms4ehFPMfI/SN5hawS3ElI/AAAAAAAAAWw/at3kBnOasp4/s400-R/enabled.JPG" border="0" /></a> </div><div class="separator" style="clear: both; text-align: center;"></div>6. You are done now just click on <b>Apply </b>and<b> OK.</b><br /><br /><b  style="color:red;"><span style="font-size:x-small;">if you have any problem in doing this you can leave your question back as comment</span> </b>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+

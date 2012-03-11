@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Inserting GPL license notice in Emacs</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  Inserting GPL license notice in Emacs
+</div>
+<div class="postbody">
+  <div style="text-align: justify;">If you have used Geany a simple IDE it allows you to insert the GPL or similar license into the code file. I use Emacs and when I want to insert some sort of open source license I had to switch back to Geany and insert the license and return back to Emacs. Finally I thought of writing my own yasnippet to do this job. I've written 2 separate snippet files one for Python and other can be used by all languages which use C style comments.<br /><br /><a name='more'></a>&nbsp;</div>The snippet does the following<br /><div style="text-align: justify;">1. It gets the name of the file from the current buffer's name</div><div style="text-align: justify;">2. Copyright statement similar to one found in GPL license notice. Here I extract the year from current date. Also I insert the user name and email address from elisp variables user-full-name and user-mail-address. For customizing user name and email address please add the following lines in your .emacs file</div><blockquote><i>(setq user-full-name</i><br /><i>"Your name")</i><br /><i>(setq user-mail-address</i><br /><i>"Your email address")</i></blockquote><div style="text-align: justify;">3. Next comes the type of license. You can select license from drop down (Lesser,Affero) if you want to use GPL then just leave this field to default.</div><div style="text-align: justify;">4. Version is also selected from drop down. Version 2 and 3 are for GPL,Affero and 2 2.1 for Lesser GPL. Its up-to user to select proper version for a license selected in previous option.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">The first 2 options that is file name and copyright lines can be edited to override default values. Please use Tab key to navigate from one field to other.</div><div style="text-align: justify;"><br /></div>Here are the installation instruction<br /><div style="text-align: justify;">1. Copy the pygpl to <i><b>snippets/text-mode/python-mode/</b></i> folder.</div>2. Copy the cgpl file to <i><b>snippets/text-mode/cc-mode </b></i>directory and then create hard links using ln in c-mode and c++-mode.<br />&nbsp; <br />Usage:<br /><div style="text-align: justify;">1. In the Python mode just type <i><b>pygpl</b></i> and then hit Tab key and license notice will be inserted starting from the line where you wrote pygpl. </div>2. For C/C++ or any other mode follow the same step just type in <i><b>cgpl</b></i> instead of pygpl rest all remains same.<br />Here is a screen shot of the license notice inserted in a Python file<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/_Pms4ehFPMfI/TF7qnMUDs6I/AAAAAAAABX4/10SQnSCkx4I/s1600/screen_shot.png" imageanchor="1" style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;"><img border="0" height="473" src="http://3.bp.blogspot.com/_Pms4ehFPMfI/TF7qnMUDs6I/AAAAAAAABX4/10SQnSCkx4I/s640/screen_shot.png" width="640" /></a></div><br />You can get the snippets from github. This is the first version of these snippets. Any suggestions on improvements are welcome :)<br />--Vasudev
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+

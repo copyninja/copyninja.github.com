@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Importing a CSV Files into MySQL</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  Importing a CSV Files into MySQL
+</div>
+<div class="postbody">
+  <div style="text-align: justify;">CSV stands for Coma separated Values. Normally in this file each field is separated from other using ",". Well as part of my project I created a sniffer which will be sitting on the gateway and captures all packet coming and going to and from it. I needed to record all the traffic which I capture. Bestway is to dump it into a log file. First I thought of using space as delimeter but our sir told its better to use CSV instead so I seperated each fields using coma's. As per the requirement of the project I needed to create different forms of graphs. First I thought of creating graphs statically at the end of each day by using the Crontab facility. But our sir wanted us to make this graph generation dynamically. Well using flat file which grows very fast really gave us a head ache. But I read in some site that I can easily import the CVS files into any application. I stumbled uppon the PHPMyAdmins import facility which supports importing data from CSV File. I got the query from PHPMyAdmin to do the job.</div><div style="text-align: justify;">Let me tell how to import your log files into database.</div><div style="text-align: justify;">1. Create a table with number of fields equal to number of fields in your fail.</div><div style="text-align: justify;">2. Use the LOAD DATA command to get files content into table. Below is the syntax of the command</div><br /><pre name="cde" class="sql">LOAD DATA [LOW_PRIORITY | CONCURRENT] [LOCAL] INFILE 'file_name'<br />    [REPLACE | IGNORE]<br />    INTO TABLE tbl_name<br />    [CHARACTER SET charset_name]<br />    [{FIELDS | COLUMNS}<br />        [TERMINATED BY 'string']<br />        [[OPTIONALLY] ENCLOSED BY 'char']<br />        [ESCAPED BY 'char']<br />    ]<br />    [LINES<br />        [STARTING BY 'string']<br />        [TERMINATED BY 'string']<br />    ]<br />    [IGNORE number LINES]<br />    [(col_name_or_user_var,...)]<br />    [SET  = expr,...]</pre><div style="text-align: justify;">For example my log file consisted of 8 fields. Format is shown below</div><blockquote>timestamp,eth_src,ip_src,src_port,eth_dest,ip_dest,dest_port,protocol</blockquote><div style="text-align: justify;">I created table to consist these 10 fields with time stamp as primary key and used <b>load data</b> command as follows</div><pre name="code" class="sql">LOAD DATA LOCAL INFILE '/var/log/sniffer.log' IGNORE INTO TABLE `sniffer`<br />FIELDS TERMINATED BY ','<br />ESCAPED BY '\\'<br />LINES TERMINATED BY '\n'</pre><div style="text-align: justify;">&nbsp;In your log file delimeter can be any charachter you want, you just need to specify it as <b>FIELDS TERMINATED BY ','</b>. Similarly you can specify the line terminator also.</div><div style="text-align: justify;">For more information about this command refer this <a href="http://dev.mysql.com/doc/refman/5.1/en/load-data.html">link</a>. Also don't forget to try out <a href="http://www.phpmyadmin.net/">PHPMyAdmin</a></div>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+

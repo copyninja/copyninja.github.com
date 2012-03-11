@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>dh-make-font - A Font package helper for Debian</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  dh-make-font - A Font package helper for Debian
+</div>
+<div class="postbody">
+  <div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: justify;">Recently I was doing the font transition for <i>ttf-indic-fonts</i> in <i>Debian-IN</i> team and by doing the same process again and again I really got bored. This boredom gave rise to this new tool called <i>dh-make-font. </i>I wish to see it in Debian but I don't know how the font and other packaging guru's of Debian react to my novice tool :). I won't call it tool because its nothing but a simple wrapper on top of <i>dh_make</i> which modifies the files and removes unnecessary file which is created by <i>dh_make</i>. I want to tell how you can use this tool to easily package a font according to the <i>Debian Font Task Force's </i>new packaging <a href="http://wiki.debian.org/Fonts/PackagingPolicy">policy</a>. I'll take the transition of <i>ttf-telugu-fonts</i> as an example here.</div><div style="text-align: justify;"><br /><i><b>Note that here I assume that reader has a basic knowledge on how to use dh_make and about the common files used in Debian packaging.</b></i><br /><br /></div><div style="text-align: justify;">First lets create a folder with name <i>telu-extra-1.0. </i>Since most of the font upstream in case of ttf-indic-fonts are inactive <i>Debian-IN </i>team itself acts as the upstream for these fonts so we don't have any tarballs to startwith.</div><br /><div style="text-align: justify;">Once we have created folder we will copy the font files from old ttf-telugu-fonts into <i>telu-extra-1.0</i> folder also we will copy the <i>90-ttf-telugu-fonts.conf</i> to our folder as <i>90-fonts-telu-extra.conf. </i>Now we have the basic package content ready lets give a shot to <i>dh-make-font</i></div><br /><blockquote class="tr_bq"><i>dh-make-font -c gpl3 --maint 'Debian-IN Team &lt;debian-in-workers@lists.alioth.debian.org&gt; telu-extra-1.0 </i></blockquote><div style="text-align: justify;">Now the hard part to explain what I did :). I just ran <i>dh-make-font</i> on <i>telu-extra-1.0</i> folder which we prepared above. As you can see <i>-c</i> switch is borrowed from the <i>dh_make</i> and all values it accepts are same. You can even give long switch <i>--copyright</i> if you wish :). <i>--maint </i>is the new option I've provided specific to <i>dh-make-font</i>. This option allows you to override <i>Maintainer </i>of package. If&nbsp; you don't override <i>Debian Fonts Task Force </i>will be the maintainer. Did you ask why? Yes you guessed it right I prepared this tool to encourage people to maintain fonts as part of <i>Debian Fonts Task Force </i>team.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Besides the above option you can also specify <i>-p / --package</i> option to specify package name and version this will be passed over to dh_make. If you get confused just pass <i>-h </i>or <i>--help </i>option to the dh-make-font it will give you details :)</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">When you run above command we will see familiar questions appearing for us. Yes it is from <i>dh_make</i>, use your <i>dh_make</i> knowledge and proceed <i>dh_make</i> and <i>dh-make-font</i> will print few instructions on screen and our package is almost ready for Debian assuming <i>dh_make</i> didn't find something wrong in our setup. Now we need to do few minor stuffs.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">1. Edit the <i>control </i>file and add the short and long descriptions remove <i>fontforge</i> build dependency as we are not building fonts from source (.sfd files). </div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">2. Check the <i>install </i>and <i>links </i>file. Links file will be created only if there is a fontconfig related file getting installed. In our case it will be present</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">3. Edit the <i>copyright </i>file and insert copyright holders name for fonts also remove dh_make template from the file. Insert a valid dep5 <i>Format</i> uri</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">Now run your package building command. In my case I will use pbuilder to get my package ready. Wasn't that helpful? No I'm asking seriously please leave your thoughts and suggestion through comments and help me improve the tool.</div><div style="text-align: justify;"><br /></div><div style="text-align: justify;">This tool is actually helping me a lot. Within 20 minutes I could finish of 2 packages and get them into <i>Debian-IN </i>team repository. I hope it will help others too and also will get its place in <i>Debian Fonts Task Force team</i><br /><br />Now are you wondering where you can get the source? My bad here it is http://anonscm.debian.org/gitweb/?p=debian-in/dh-make-font.git;a=summary<i> </i></div></div>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+

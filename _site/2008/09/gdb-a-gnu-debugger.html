@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>GDB a GNU debugger</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  GDB a GNU debugger
+</div>
+<div class="postbody">
+  <div xmlns="http://www.w3.org/1999/xhtml"><font size="3"><font face="georgia">GDB is a free debugger by GNU. Its a command line debugging facility used for debugging C,C++ and few other languages. Most of us are familiar with debugging in a Graphical Interface and feel awkward to use GDB. But GDB is a powerful debugger, once you know how to use it you won't be awkward to use it. Here i'm giving a few tips (which I know about GDB).<br /></font></font><ul><li><font size="3"><font face="georgia">To debug a C or C++ program using GDB you must specify a switch during compile time i.e tell compiler to produce debugging information file. This can be done as follows</font></font></li></ul><font size="3"><font face="georgia">         gcc -ggdb filename.c or g++ -ggdb filename.cpp (you can also use cc or c++ and switch can be simply -g)<br /></font></font><ul><li><font size="3"><font face="georgia">Once you have compiled the program without any errors, its time to launch gdb</font></font></li></ul><font size="3"><font face="georgia">         gdb a.out (or filename if you renamed the file during compilation)<br /><br />       You will command line of gdb which looks something like this (gdb)_<br />      <br />The commands in gdb are<br /><br /><span style="font-weight: bold;">run</span> <span style="font-style: italic;">command line aruments</span>: If your program doesn't take any command line arguments then simply specify run. This command starts your program.</font></font><font face="georgia"><font size="3"><br /><br /><strong>break</strong> place :Creates a breakpoint; the program will halt when it gets there. The most common breakpoints are at the beginnings of functions. You can also specify line numbers in source file where you want to place break point like break 20.<br /><br /><span style="font-weight: bold;">delete</span> N : Deletes break point at line N. Information about the break point can be got by using info break.<br /><br /><span style="font-weight: bold;">step</span> : Executes current line and stops at next line.<br /><br /><span style="font-weight: bold;">next</span> : Similar to step but when current line is function call next command executes the whole function and stops at next line to function call. Step enters the function and stops at first statement in function.<br /><br /><span style="font-weight: bold;">finish</span> : Keeps doing nexts, without stepping, until reaching the end of the current function.<br /><br /><span style="font-weight: bold;">continue</span> : Continues regular execution of the program until a breakpoint is hit or the program stops.<br /><br /><span style="font-weight: bold;">print</span> E : prints the value of E in the current framein the program, where E is a C expression (usually just a<br />variable). <span style="font-weight: bold;">display</span> is similar, except every time you execute a next or step, it will print out the<br />expression based on the new variable values.<br /><br /><span style="font-weight: bold;">where</span> or <span style="font-weight: bold;">bt</span> or <span style="font-weight: bold;">backtrace</span> : prints chain of function call that brought the program to current point of execution.<br /><br /><span style="font-weight: bold;">quit </span>: Leaves GDB.<br /><br />If you want to know further functionality of gdb you should follow this link<br /><a href="http://www.delorie.com/gnu/docs/gdb/gdb_toc.html"><br />http://www.delorie.com/gnu/docs/gdb/gdb_toc.html</a></font><font style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;" class="Apple-style-span" size="16" face="'times new roman'"><font size="3"><strong><font face="monospace"><font size="4"><br /><br /><br /><font style="font-weight: normal;">Happy Debugging :)</font></font><font style="font-weight: bold;"><br /></font></font></strong></font></font><font style="border-collapse: separate; color: rgb(0, 0, 0); font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px;" class="Apple-style-span" size="16" face="'times new roman'"><strong></strong></font><strong></strong></font><ul></ul></div>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+

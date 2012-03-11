@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Improve speed of browsing using dnsmasq</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  Improve speed of browsing using dnsmasq
+</div>
+<div class="postbody">
+  <p style="text-align: justify">From past few days I was having this weird problem of unable to connect to Google search page few times a day. I was not sure what is causing this problem (since I was on Windows based machine I thought this might be doing of some unwanted program). Finally downloaded the <a title="namebench" href="http://code.google.com/p/namebench/" target="_blank">namebench, </a>a dns benchmarking tool and checked which will be the fastest dns server for me that time I found out my primary and secondary dns is not replying for Google.com weird. This is causing me so much trouble so thought of having my own local dns cache. When searched bumped accross <strong>dnsmasq</strong> and <strong>bind9</strong>, bind9 being full fledged dns server and can be configured to work as dns cache also. But i felt dnsmasq (light weight dhcp and caching dns server) is sufficient for the time being. Well enough of story let me come to point in this point i'm going to tell how to configure dnsmasq ;).</p>
+<p style="text-align: justify">dnsmasq doesn't really require configuration it can work without any configurations also. First thing is how to install it (for debian based distros)</p>
+
+<blockquote>sudo apt-get install dnsmasq</blockquote>
+The configuration file for dnsmasq resides in /etc folder and names is dnsmasq.conf, by default everything in this file is commented out. Fist uncomment the following to lines
+<blockquote>interface=ppp0
+listen-address=127.0.0.1</blockquote>
+<p style="text-align: justify">You need to add proper value after = symbol. <strong>interface</strong> tells dnsmasq to listen on specific interface this will be useful if you have multiple network interfaces and want dnsmasq to listen only on a particular interface. Since i'm using dialup my interface is ppp0, for users who are LAN or using broadband connections you can specify eth0 (more specifically ethN replace N with proper number depending on your machine configuration. To find out name of your interface use <strong>ifconfig</strong> command).  <strong>listen-address</strong> is very important one when you start dnsmasq it open and listens on port 53 this makes any one on the network to use your cache (and mostly lead to take advantages of vulnerability in the program) by adding 127.0.0.1 as value dnsmasq will accept request only from your local machine.</p>
+
+If you are intersted in checking if dnsmasq is working or not uncomment the line
+<blockquote>log-queries</blockquote>
+Found at the end of the file. To monitor the log use following command
+<blockquote>tail -f /var/log/syslog | grep dnsmasq -</blockquote>
+Finally if you don't want to use dns servers provided by your ISP (i really don't want to use because BSNL DNS is slow and they use Open DNS which i really hate for hijacking domains) create a file with list of dns name server ip's which you want to use and uncomment the line <strong>resolv-file</strong>= and add the file name after = symbol. In my system i created a file by name myipresolver.conf in /etc and modified the line to look like this
+<blockquote>resolv-file=/etc/myipresolver.conf</blockquote>
+If you are curious here is the content of the file
+<blockquote>nameserver 127.0.0.1
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 202.148.202.4
+nameserver 202.148.200.3
+nameserver 164.164.164.5</blockquote>
+By default I mean if you leave above mentioned property commented dnsmasq will read /etc/resolv.conf which contains ISP provided name servers. And ya one more thing don't forget to add <strong>nameserver 127.0.0.1</strong> line to the top of your /etc/resolv.conf to use your newly created dns cache :).
+
+If you find any mistakes in the post please do comment and correct me. C ya .....
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+

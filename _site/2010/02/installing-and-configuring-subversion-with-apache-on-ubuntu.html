@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Installing and configuring Subversion with Apache on Ubuntu</title>
+    <meta name="author" content="Vasudev Kamath" />
+
+    <!-- Normalize CSS -->
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS -->
+    <link media="screen" rel="stylesheet" href="/css/1140.css" type="text/css"/>
+
+    <!-- styles.css -->
+    <link media="screen" rel="stylesheet" href="/css/styles.css" type="text/css"/>
+
+    <!-- 1140 Grid CSS related javascript -->
+    <script src="/js/css3-mediaqueries.js" type="text/javascript"></script>
+
+    
+    <!-- syntax highlighting CSS -->
+    <link rel="stylesheet" href="/css/emacs.css" type="text/css" />
+
+    <!-- Webfont url -->
+    <link rel="stylesheet" href="/fonts/stylesheet-bitstream.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-angelina.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-aargh.css" type="text/css"/>
+    <link rel="stylesheet" href="/fonts/stylesheet-lato.css" type="text/css"/>    
+
+    <!-- Homepage CSS -->
+    <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  </head>
+  <body>
+
+    <div class="container header">
+      <div class="row">
+        <div class="site">
+          <div class="title">
+            <a href="/">Random Ramblings</a>
+          </div>
+          <div class="subheading">
+            Random thoughts shooting out of volatile mind
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container details">
+      <div class="row">
+        <div class="eightcol">
+          <div class="postheading">
+  Installing and configuring Subversion with Apache on Ubuntu
+</div>
+<div class="postbody">
+  <div xmlns="http://www.w3.org/1999/xhtml"><div style="text-align: justify;">To install the Subversion a popular version control system in Ubuntu or Debian based distro's follow the following steps. I'm configuring subversion with apache webserver using dav_svn module of apache2.</div><div style="text-align: justify;">1. Get the subversion and tools using following command</div><blockquote>sudo apt-get install subversion subversion-tools</blockquote><br /><div style="text-align: justify;">2. If you have not already install apache2 install using following command</div><blockquote>sudo apt-get install apache2</blockquote><br /><div style="text-align: justify;">3. Install the subversion module for apache i.e mod_dav_svn. Use the following command</div><blockquote>sudo apt-get install libapache2-svn</blockquote><div style="text-align: justify;">Next is to create and configure a repository to work with. I've created a folder called svn in / folder inside which all repositories reside. You can choose any folder of your choice.</div><div style="text-align: justify;">1. Create a directory svn under root partition i.e /</div><blockquote>sudo mkdir svn</blockquote><div style="text-align: justify;">2. Create a folder for your project with which you want to use subversion. Taking project name is myproject here is the procedure to create svn repository</div><blockquote>cd /svn<br />sudo mkdir myproject<br />sudo svnadmin create myproject</blockquote><div style="text-align: justify;">The svnadmin create command creates the repository. Next is to configure Apache server for serving this repository. Open the file /etc/apache2/mods-available/dav_svn.conf in your favourite editor. (Note you need to have su rights to save changes). Add the following lines</div><blockquote>&lt;Location /svn/myproject&gt;<br />&nbsp;&nbsp; DAV svn<br />&nbsp;&nbsp; SVNPath /svn/myproject<br />&nbsp;&nbsp; AuthType Basic<br />&nbsp;&nbsp; AuthName "Subversion repository for myproject"<br />&nbsp;&nbsp; AuthUserFile /etc/subversion/passwd<br />&nbsp;&nbsp; Require valid-user<br />&lt;/Location&gt;</blockquote><div style="text-align: justify;">SVNPath points to your repository. AuthType Basic means requires authentication. Now you need to create AuthFile i.e passwd file and also need to create the users for the repository. First lets see how to create the users.</div><div style="text-align: justify;">1. Go to repository folder and enter the conf directory. i.e</div><blockquote>cd /path/to/repository/conf<br /><br /></blockquote><div style="text-align: justify;">2. edit the authz file. You may need to use sudo for that purpose. add the following lines.</div><blockquote>[group]<br />commiter=vasudev<br />developer=somedeveloper<br /><br />[repository:/]<br />@commiter=rw<br />@developer=r</blockquote><div style="text-align: justify;">I always use this way you can create individual user and give them permissions though. [group] tells svn the groups of user for this repository. Second set i.e [repository:/] this is used to give permissions on particular folder tree under repository (normally repository will have trunk tag branches directory). The permission here applies to all the folder (i.e trunk tag branches). You can customize permission on each folder using several these sections. (If you use so be sure to put the root section at the end )</div><br /><div style="text-align: justify;">3. Next is creating the password file. I chose /etc/subversion folder to place my password file. Use the htpasswd command to create the password for each user mentioned in each group of authz file. After you are done reload the apache using following command</div><blockquote>sudo /etc/init.d/apache2 reload</blockquote><br /><div style="text-align: justify;">4. Next is trunk tags and branches import. Create directories /tmp/myproject /tmp/myproject/trunk /tmp/myproject/tags /tmp/myproject/branches folder. And use the following command </div><blockquote>svn import /tmp/myproject http://localhost/svn/myproject -m "Initial directory imports"</blockquote><br /><div style="text-align: justify;">SVN will ask for the user name and password and then adds the directories to your repository. Once this is done you can use the svn import to import your existing project work to the trunk of the repository.</div><br /><div style="text-align: justify;">Well thats it you can access your repository by following http://localhost/svn/myproject from your browser or using any clients or IDE plugins. If you want nice UI while accessing the svn from browser you can either install view vc for apache2 or use WebSVN. Well let me write a post on Websvn, till then C ya.</div><br /><br /><br /><br /><br /><br /><br /><br /><div class="zemanta-pixie"><img alt="" class="zemanta-pixie-img" src="http://img.zemanta.com/pixy.gif?x-id=f7e14faf-387f-8aff-9171-f836470441ec" /></div></div>
+
+</div>
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+    <li><span>11 Mar 2012</span> &raquo; <a href="/2012/03/hello_planet%21.html">Hello Planet! (Debian)</a></li>
+    
+    <li><span>10 Mar 2012</span> &raquo; <a href="/2012/03/ttf-indic-fonts_to_fonts-indic_transition_complete%21.html">ttf-indic-fonts to fonts-indic transition complete!</a></li>
+    
+    <li><span>04 Mar 2012</span> &raquo; <a href="/2012/03/lato_fonts_for_debian.html">Lato Fonts for Debian</a></li>
+    
+  </ul>
+</div>
+
+<!-- Disqus -->
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+  /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+  var disqus_shortname = 'randramblings'; // required: replace example with your forum shortname
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function() {
+  var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+  dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+        </div>
+        <div class="fourcol last">
+          <div class="main-menu">
+            <div id="home-menu" class="main-menu-item "> <a href="/"> Home </a></div>
+            <div id="me-menu" class="main-menu-item "><a href="/about"> About </a></div>
+            <div id="project-menu" class="main-menu-item"> Projects and Talks </div>
+            <div id="archive-menu" class="main-menu-item "> <a href="/archives"> Archives </a></div>
+            <div id="package-menu" class="main-menu-item"> <a href="http://qa.debian.org/developer.php?login=kamathvasudev@gmail.com"> Debian Packages </a> </div>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <div class="widget">
+            Follow Me
+            <br/>
+            <br/>
+            <a href="http://frndk.de/profile/copyninja"><image class="badge" src="/images/iamusingfriendika.png"/></a>
+          </div>
+          <br/>
+          <hr/>
+          <br/>
+          <a href=><img src= "http://pics8.inxhost.com/images/sticker.gif" border="0" width="80" height="15"/></a>
+          <a href="/rss"><img class="badge" width="73" height="18" longdesc="/rss" alt="XML: RSS Feed" src="/images/rssbutton.png"></a>
+          <a href="/atom"><img class="badge" width="73" height="18" longdesc="/atom" alt="XML: Atom Feed" src="/images/atombutton.png"></a>
+          <a href='https://www.ohloh.net/accounts/153053?ref=Tiny'>
+            <img alt='Ohloh profile for copyninja' height='15' src='https://www.ohloh.net/accounts/153053/widgets/account_tiny.gif' width='80' />
+          </a>
+          <a href='http://www.catb.org/hacker-emblem/'>
+            <img src='/images/hacker.png' alt='hacker emblem' />
+          </a>
+          <br/>
+          <br/><a href="http://www.adfreeblog.org/" target="_blank"> <img src="http://www.adfreeblog.org/adfreebutton.jpg"></a>
+          <br/>
+          <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">
+            <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by/3.0/88x31.png" />
+          </a>
+          <br/>
+</a>          
+</div>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="container footer">
+  <div class="site">
+    <div class="row">
+      <div class="footer">
+        <div class="contact">
+          <p>
+            (c) 2012 Vasudeva Kamath<br />
+            <br/>
+            This blog is powered by <b> Jekyll </b> and <b>Emacs</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<a href="http://github.com/copyninja"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a>
+
+</body>
+</html>
+
+
