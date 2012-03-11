@@ -1,0 +1,19 @@
+---
+layout: default
+---
+<div class="postheading">{{page.title}}</div>
+<div class="postbody">
+<ul>
+  {% for post in site.posts %}
+  {% for tag in post.tags %}
+  {% if tag == page.tag %}
+  <li class="archive_list">
+    <span class="posteddate" align="left"><time  datetime='{{post.date | date: "%m-%d"}}'>{{post.date | date: "%m/%e"}}</time></span>
+    &nbsp;&nbsp; &raquo; &nbsp; &nbsp;
+    <a href='{{post.url}}'>{{post.title}}</a>
+  </li>
+  {% endif %}
+  {% endfor %}
+  {% endfor %}
+</ul>
+</div>
