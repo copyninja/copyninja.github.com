@@ -9,7 +9,7 @@ permalink: /about/index.html
 
 Who Am I?
 ==========
-
+<image src="/images/vasudev.png" alt="me" align="right"/>
 I'm Vasudev. I'm a Software Engineer working in R&D Team of a MNC in Bangalore. I was born and bought
 up in the city of <a href="https://en.wikipedia.org/wiki/Karkala">Karkala</a>. I got my B.E degree
 in *Information Science and Engineering*  from NMAM Institute of Technology Nitte.
