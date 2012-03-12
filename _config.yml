@@ -1,14 +1,10 @@
-safe: false
+safe: true
 auto: false
-server: false
-server_port: 4000
-url: http://copyninja.github.com
+
 
 source: .
 destination: ./_site
 plugins: ./_plugins
-
-
 
 future:      true
 lsi:         false
