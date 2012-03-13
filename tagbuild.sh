@@ -14,5 +14,5 @@ jekyll
 echo "Copying ${TAG} ..."
 cp -a ${SITE}/${TAG} .
 
-# echo "Commiting Changes..."
-# git commit ${TAG} -m "Latest TAG build"
+echo "Commiting Changes..."
+git commit ${TAG} -m "Latest TAG build"
