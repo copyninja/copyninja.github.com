@@ -8,7 +8,7 @@ home_css_class: main-menu-item-selected
 
 <div id="home">
 
-  <ul class="posts">
+  <div class="posts">
     {% for post in site.posts limit: 4 %}
       {% capture post_date %}{{ post.date | date: "%Y%m%d" }}{% endcapture %}
       <div class="postheading"><a class="glyph-permalink" href="{{ post.url }}" title="Permanent link to: '{{ post.title }}'">{{ post.title }} </a></div>
@@ -21,7 +21,7 @@ home_css_class: main-menu-item-selected
     <br/>
     {% endif %}
     {% endfor %}
-  </ul>
+  </div>
 
 </div>
 
