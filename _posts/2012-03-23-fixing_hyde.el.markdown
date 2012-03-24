@@ -1,6 +1,10 @@
 ---
 layout: post
 title: "Fixing hyde.el"
+tags:
+- jekyll
+- code
+- fix
 ---
 
 Recently after changing my blog to use jekyll and Github I came across the
