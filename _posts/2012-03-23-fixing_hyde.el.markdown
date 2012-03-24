@@ -24,11 +24,12 @@ After error *hyde mode* never showed jekyll blog properly. Looking at the source
 I saw all the statements which were commands were executed using *shell-command* elisp
 function similar to following
 
-{% highlight elisp %}
+{% highlight cl %}
+
 let (
 (cmd (format "cd '%s' && git diff-files --quiet '%s' > /dev/null" repo file))
-)
-    (= (shell-command cmd) 1))
+(= (shell-command cmd) 1))
+
 {% endhighlight%}
 
 The cd command in the string was failing some how spoiling all other stuff!.. Probably the *~* in 
