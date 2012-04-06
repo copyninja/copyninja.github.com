@@ -2,7 +2,7 @@
 layout: post
 title: "Packaging Falcon Programming Language for Debian"
 tags:
- - debian
+ - Debian
  - packaging
 ---
 [Falcon](http://falconpl.org/) is a programming language which is not yet packaged for
