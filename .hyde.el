@@ -1,3 +1,5 @@
 (setq hyde/deploy-command "git push" ; Command to deploy
-      hyde-home "~/Public/blog"
+      hyde-posts-dir "_posts"
+      hyde/git/remote "origin"
+      hyde/git/remote-branch "master"
       )
