@@ -45,7 +45,7 @@ is part of *openssl* source package which is causing lintian thrown on GPL viola
 into this.
 
 ## Patches submitted ##
-I've submitted total of[6 patches](http://anonscm.debian.org/gitweb/?p=collab-maint/falconpl.git;a=tree;f=debian/patches;h=aac74cd0c32cb33662cf6f6fd5f4b249c708d77a;hb=HEAD) of which 5 patches are already applied to upstream git repo and 6th one is waiting to be applied. In other
+I've submitted total of [6 patches](http://anonscm.debian.org/gitweb/?p=collab-maint/falconpl.git;a=tree;f=debian/patches;h=aac74cd0c32cb33662cf6f6fd5f4b249c708d77a;hb=HEAD) of which 5 patches are already applied to upstream git repo and 6th one is waiting to be applied. In other
 words upstream is really helpful to us.
 
 Well thats all for this week more updates next week (or may be even before that ;-) )
