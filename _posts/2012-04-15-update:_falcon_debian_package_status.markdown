@@ -41,7 +41,7 @@ of Linux because lack of assembler, but I've not fully confirmed this.
 
 ## Legal Issues ##
 To enable the *curl* bindings I added curl dependency which in turn has dependency on *libssl1.0* library which
-is part of *openssl* source package which is causing lintian thrown on GPL violation error. Kartik will be looking
+is part of *openssl* source package which is causing lintian thrown  GPL violation error. Kartik will be looking
 into this.
 
 ## Patches submitted ##
