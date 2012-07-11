@@ -8,6 +8,7 @@ layout: default
 </div>
 <div class="postbody">
   {{ content }}
+  <div class="posteddate">Posted by: copyninja on {{ page.date | date:"%A, %e %B %Y" }}</div>  
   <br/>
   {% if page.date %}{% include meta.md %}{% endif %}  
 </div>
