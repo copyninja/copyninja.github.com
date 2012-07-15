@@ -359,6 +359,9 @@ a.tag_list_link:hover{
 pre {
     background-color: #f7f9fa;
     border: 1px dashed #8cacbb;
+    font-style: italic;
+    font-family: LatoLight,sans-serif;
+    font-size: 11px;
     margin-bottom: 20px;
     margin-top: 20px;
     margin-left: 0;
