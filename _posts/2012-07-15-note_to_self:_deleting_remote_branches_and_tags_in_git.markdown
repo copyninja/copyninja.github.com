@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "Note to Self: Deleting Remote Branches and Tags in Git"
-tag:
-- git
-- programming
+tags:
+ - git
+ - programming
 ---
 
 Its been a while I'm using Git as a version control system for my various work whether
