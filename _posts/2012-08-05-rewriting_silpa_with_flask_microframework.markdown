@@ -56,7 +56,7 @@ Things Remaining TODO
 ----------------------
 Below is some stuffs still pending before this version can completely replace [http://silpa.org.in](http://silpa.org.in)
 <pre>
-1. Separate all modules from original SILPA
+1. Separate all modules from original SILPA and get it uploaded to pypi
 2. Provide RESTful interface
 3. Provide proper LICENSE, AUTHORS file for all modules 
 4. Prepare a Nice UI
