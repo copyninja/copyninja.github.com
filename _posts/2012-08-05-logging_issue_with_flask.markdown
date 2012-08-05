@@ -14,17 +14,22 @@ won't log anything to the log even though log file is created in whatever locati
 configuring the logging. 
 
 Flask documentation suggests following way to use logging 
+
 {% highlight python %}
+
 import logging
 from logging.handlers import RequiredHandler
 file_handler = RequiredHandler(...)
 file_handler.setLevel(logging.WARNING)
 app.logger.addHandler(file_handler)
+
 {% endhighlight %}
 
 After banging my head for some time  I again wanted to look at Python's logging [tutorials](http://docs.python.org/howto/logging.html#logging-advanced-tutorial)
 see if I'm doing something wrong and I found this example
+
 {% highlight python %}
+
 import logging
 
 # create logger
@@ -50,6 +55,7 @@ logger.info('info message')
 logger.warn('warn message')
 logger.error('error message')
 logger.critical('critical message')
+
 {% endhighlight %}
 
 So there it is I need to set the logging level even on logger to same level as what I set on my handler.
@@ -58,6 +64,7 @@ trick so I modified function configuring logging to look something like below (I
 in Flask documentation itself real code can be seen in[ SILPA code on Github](https://github.com/copyninja/Silpa-Flask))
 
 {% highlight python %}
+
 import logging
 from logging.handlers import RequiredHandler
 
@@ -66,6 +73,7 @@ file_handler.setLevel(logging.WARNING)
 
 app.logger.setLevel(logging.WARNING)
 app.logger.addHandler(file_handler)
+
 {% endhighlight %}
 
 This actually did the trick and now Flask is happily logging whatever I give to *app.logger.levelname* So I
