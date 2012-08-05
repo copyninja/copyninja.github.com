@@ -4,6 +4,7 @@ title: "Rewriting SILPA with Flask microframework"
 tags:
  - python
  - Programming
+ - SILPA
 ---
 
 As a introduction on what is SILPA you can read my [previous post](http://copyninja.info/2010/05/silpa-an-indian-language-processing-application.html)
