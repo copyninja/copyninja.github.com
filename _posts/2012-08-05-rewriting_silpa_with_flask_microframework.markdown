@@ -65,9 +65,11 @@ Below is some stuffs still pending before this version can completely replace [h
 ...
 </pre>
 
+Update
+------
 <pre>
-Update: Forgot to provide the github link and demo link for the new version of SILPA. Thanks to Aravinda for pointing
+Forgot to provide the github link and demo link for the new version of SILPA. Thanks to Aravinda for pointing
 it out. Here it goes
-Github: [http://github.com/copyninja/Silpa-Flask]([http://github.com/copyninja/Silpa-Flask)
-Demo: [http://flasksilpa-indic.rhcloud.com](http://flasksilpa-indic.rhcloud.com)
+Github: <a href="http://github.com/copyninja/Silpa-Flask">http://github.com/copyninja/Silpa-Flask</a>
+Demo: <a href="http://flasksilpa-indic.rhcloud.com">http://flasksilpa-indic.rhcloud.com</a>
 </pre>
