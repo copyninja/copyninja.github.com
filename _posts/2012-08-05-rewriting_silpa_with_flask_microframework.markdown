@@ -64,3 +64,10 @@ Below is some stuffs still pending before this version can completely replace [h
 5. Find a better name than *SILPA*
 ...
 </pre>
+
+<pre>
+Update: Forgot to provide the github link and demo link for the new version of SILPA. Thanks to Aravinda for pointing
+it out. Here it goes
+Github: [http://github.com/copyninja/Silpa-Flask]([http://github.com/copyninja/Silpa-Flask)
+Demo: [http://flasksilpa-indic.rhcloud.com](http://flasksilpa-indic.rhcloud.com)
+</pre>
