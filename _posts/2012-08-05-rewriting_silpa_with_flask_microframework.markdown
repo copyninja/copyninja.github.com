@@ -8,7 +8,7 @@ tags:
 ---
 
 As a introduction on what is SILPA you can read my [previous post](http://copyninja.info/2010/05/silpa-an-indian-language-processing-application.html)
-This application was written by Santhosh <strike>about 6-7 years ago</strike> in May 2010 ( <strike> Correct me if I'm wrong Santhosh ;-)</strike> Thanks to Santhosh for correcting me ) in Python without using any web framework.
+This application was written by Santhosh <strike>about 6-7 years ago</strike> in May <strike>2010</strike> 2009 ( <strike> Correct me if I'm wrong Santhosh ;-)</strike> Thanks to Santhosh for correcting me ) in Python without using any web framework.
 He crafted whole system single handed and with very nice ideas. He wrote all the modules available in it for all possible Indian languages even
 though he is native Malayalam speaker. I joined him 3 years back and I was providing some or other improvements and he ultimately made me
 as the *Co-Developer* of SILPA.
