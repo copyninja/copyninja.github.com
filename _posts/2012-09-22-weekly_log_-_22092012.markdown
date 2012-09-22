@@ -1,0 +1,62 @@
+---
+layout: post
+title: "Weekly Log - 22092012"
+date: "2012-09-22 22:27:31 +0530"
+tags:
+- Debian
+- floss
+- weeklylog
+---
+
+After thinking a while I thought I should record my weekly FLOSS work and
+I'm starting by this week. This week I'm on vacation and in home town so 
+I could give bit more time for my FLOSS activity. So here it goes this weeks
+work
+
+Bug Squashing
+-------------
+
+* Fixed a RC bug filed on Debian-IN team <strike>[687176](http://bugs.debian.org/687176)</strike>
+  thanks to the timely patch from Kartik
+* Filed an *important* bug on fonts-taml which was missing a dependency on fonts-samyak-taml and
+  fixed it myself :-) <strike>[687806](http://bugs.debian.org/687806)<strike>
+
+Both these packages are uploaded to *unstable* first RC bug was related to Debian Installer hence was
+unblocked before we could file unblock-request. Kartik filed an unblock-request and *adsb* unblocked
+it happily and both the packages landed in unstable.
+
+New Packages
+------------
+
+* fonts-lohit-taml-classical is a new font for Tamil community developed by Lohit projects I don't
+  know much about font itself but I cleared a wnpp bug with this package <strike>[681655](http://bugs.debian.org/681655)</strike>
+* fonts-teluguvijayam is new package containing 3 Telugu fonts which is released by Department of
+  Information and Technology Andhra Pradesh. This package is pending upload and will clear wnpp
+  bug [669238](http://bugs.debian.org/669238) and is a pending upload.
+* I finally cleared all review comments by jwilk on surf package and now 0.5 version of surf is in
+  experimental.
+  
+Both these packages will be backported once Wheezy freezes. One pending wnpp is left on Debian-IN
+which I've left for Kartik to finish ;-).
+
+Font Package Helper
+-------------------
+
+I bumped version on *dh-make-font*[1] to 0.3 now it accepts upstream URL with -u, --upstream switch
+this will be placed in Homepage: field of control file and in Source: field of copyright file. Probably
+I need to think of introducing xz compression to original source tarball where upstream is not
+giving any tarball and probably rewrite it using Perl so it can get included dh-make package. Already
+a bug filed to get it included in dh-make package [658154](http://bugs.debian.org/658154).
+
+[1] http://anonscm.debian.org/gitweb/?p=debian-in/dh-make-font.git;a=summary
+
+Misc and Learnings
+------------------
+
+* Helped Jonas to fix a minor issue in boxer. I still have to figure out one issue on boxer and
+  add ramfs support to boxer. If you see boxer commit log you can find a few *Thanks to Vasudev Kamath*
+  but I still didn't commit anything directly which is now in my TODO :-)
+* Started learning Perl from *Moder Perl* [book](http://www.onyxneon.com/books/modern_perl/index.html) thanks
+  to Jaldhar for pointing this book for me.
+  
+Well that is it for this week. Hopefully I will have new stuffs to put up here for the next week, till then Cya.
