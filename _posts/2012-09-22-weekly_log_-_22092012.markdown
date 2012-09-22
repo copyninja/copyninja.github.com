@@ -17,9 +17,9 @@ Bug Squashing
 -------------
 
 * Fixed a RC bug filed on Debian-IN team <strike>[687176](http://bugs.debian.org/687176)</strike>
-  thanks to the timely patch from Kartik
+  thanks to the timely patch from Kartik</li>
 * Filed an *important* bug on fonts-taml which was missing a dependency on fonts-samyak-taml and
-  fixed it myself :-) <strike>[687806](http://bugs.debian.org/687806)<strike>
+  fixed it myself :-) <strike>[687806](http://bugs.debian.org/687806)</strike></li>
 
 Both these packages are uploaded to *unstable* first RC bug was related to Debian Installer hence was
 unblocked before we could file unblock-request. Kartik filed an unblock-request and *adsb* unblocked
