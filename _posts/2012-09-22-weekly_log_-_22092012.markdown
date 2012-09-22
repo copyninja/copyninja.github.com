@@ -15,7 +15,7 @@ work
 
 Bug Squashing
 -------------
-
+<br/>
 * Fixed a RC bug filed on Debian-IN team <strike>[687176](http://bugs.debian.org/687176)</strike>
   thanks to the timely patch from Kartik</li>
 * Filed an *important* bug on fonts-taml which was missing a dependency on fonts-samyak-taml and
@@ -27,7 +27,7 @@ it happily and both the packages landed in unstable.
 
 New Packages
 ------------
-
+<br/>
 * fonts-lohit-taml-classical is a new font for Tamil community developed by Lohit projects I don't
   know much about font itself but I cleared a wnpp bug with this package <strike>[681655](http://bugs.debian.org/681655)</strike>
 * fonts-teluguvijayam is new package containing 3 Telugu fonts which is released by Department of
@@ -52,7 +52,7 @@ a bug filed to get it included in dh-make package [658154](http://bugs.debian.or
 
 Misc and Learnings
 ------------------
-
+<br/>
 * Helped Jonas to fix a minor issue in boxer. I still have to figure out one issue on boxer and
   add ramfs support to boxer. If you see boxer commit log you can find a few *Thanks to Vasudev Kamath*
   but I still didn't commit anything directly which is now in my TODO :-)
