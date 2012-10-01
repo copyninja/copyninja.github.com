@@ -3,7 +3,7 @@ layout: post
 title: "Weekly Log - 01102012"
 date: "2012-10-01 21:45:02 +0530"
 tags:
-- debian
+- Debian
 - weeklylog
 ---
 
