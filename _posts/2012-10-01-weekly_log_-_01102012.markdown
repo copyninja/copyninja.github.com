@@ -1,0 +1,53 @@
+---
+layout: post
+title: "Weekly Log - 01102012"
+date: "2012-10-01 21:45:02 +0530"
+tags:
+- debian
+- weeklylog
+---
+
+Well this weeks log comes bit late as my week got extended till today ;-).
+I had working day at office on Saturday and Sunday due to 2nd Quarter end
+and instead today is declared as compensatory holiday and tomorrow any how
+is [Gandhi Jayanti](https://en.wikipedia.org/wiki/Gandhi_Jayanti). So here
+it goes.
+
+Debian Related
+--------------
+
+Most of my work this week was done for Debian-IN team
+
+* Integrated the KGB bot for Debian-IN team repository. Thanks to *gregoa*
+  *Tincho* and *dam* for extending helping hand in getting it configured
+* Updated the *setup-repository* to install a proper post-receive hook when
+  creating new repositories.
+* Copied the *set-git-hook* from pkg-ruby-extras team and modified it slightly
+  to install post-receive hook for KGB integration for already existing repository.
+  With this script I fixed few of the packages to use KGB which I own. Waiting
+  for Kartik to fix remaining repositories as he is the *DD* for our team :-)
+* Configured my personal instance of KGB which now stands in Debian-IN's channel
+  (#debian-in). But bot is named RAW (Research and Analysis Wing) equivalaent
+  of KGB and CIA in India :-P
+  
+Well most of this weeks work involved KGB ;-)
+
+Personal Works
+--------------
+
+* Attended the PyconIndia-2012 on Saturday, Got a NFC card :-) which I can't
+  use as my phone is not NFC capable. Only handful of talks were nice rest were
+  all newbie like talk which even lacked proper presentation skills hence didn't
+  attend on second day. Looks like quality of conference in India is decreasing.
+* Finally completed answering all questions on *Philosophy and Procedures - 1* part
+  of NM process :-). Phew it took me more time than I expected. Waiting for my AM's
+  comment. Hopefully I will get next bunch of questions soon :-)
+  
+Misc
+----
+
+Played *Cricket* after very long time (Guess after 10 long years). Well it was not
+official match or anything it was just another *Gully Cricket*. After the match it
+came to mind that I need regular physical workout :-P.
+
+Well that's it Cya till next week :-)
