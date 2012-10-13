@@ -34,13 +34,14 @@ KGB bot :-). So majority of my work on this week is on bots.
 After thinking for a while I decided to re-write the [dictionary bot](http://copyninja.info/2010/11/a-jabber-dictionary-bot-for-kannada.html)
 which when release got an overwhelming response as see in the comments of
 above link. Few reason for re-write
-   1. Generalise the bot framework so single bot can handle multiple languages
-   2. Improve the data collection on bot side
-   3. Current code base was not very well organised and trying to add more feature
-      it had become messy.
-   4. Provide XEP support to help in data collections
+
+  1. Generalise the bot framework so single bot can handle multiple languages
+  2. Improve the data collection on bot side
+  3. Current code base was not very well organised and trying to add more feature it had become messy.
+  4. Provide XEP support to help in data collections
 
 Few changes which are already implemented include
+
    1. New code is now using *pyxmpp2* library instead of GPLed *xmppy* used by current 
       code.
    2. Implemented XEP-0071 extension to properly format the meaning display by the bot
@@ -50,6 +51,7 @@ Few changes which are already implemented include
       wiktionary.
       
 Things remaining todo
+
    1. Separating wiktionary parsing logic from bot code by providing some sort of intermediate
       interface between bot and wiktionary parsers.
    2. Adding more language wiktionary parsers and teaching the bot to become multilingual :-)
