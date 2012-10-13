@@ -1,0 +1,98 @@
+---
+layout: post
+title: "Weekly Log - 06/13-102012"
+date: "2012-10-13 22:18:48 +0530"
+tags:
+ - Debian
+ - weeklylog
+ - floss
+ - life
+---
+
+Update for 06/10/2012
+---------------------
+
+Well I had not written the weekly work log for the last week that
+is because the week was short (oh yeah thanks to all these bandhs
+our week got fluctuated and to be frank the week was only 4 days
+long) and second was my lazyness. Here goes the update
+ * After a long discussion with [Aravinda](http://aravindavk.in) on
+   "why productivity is reducing these days." We concluded the social
+   network is eating up most of time. So decision was made and I closed
+   all pinned tabs for Twitter Gmail Identi.ca and Friendica on my browser
+ * After the above resolution I finished almost 4 chapters of *Moder Perl*
+   within 2 hours!. Indeed Social networks kill the productivity.
+
+Update for 13/10/2012
+---------------------
+
+I've really fallen in love with computerised bots, thanks to the wonderful
+KGB bot :-). So majority of my work on this week is on bots.
+
+#### Jabber Dictionary Redesign ####
+
+After thinking for a while I decided to re-write the [dictionary bot](http://copyninja.info/2010/11/a-jabber-dictionary-bot-for-kannada.html)
+which when release got an overwhelming response as see in the comments of
+above link. Few reason for re-write
+   1. Generalise the bot framework so single bot can handle multiple languages
+   2. Improve the data collection on bot side
+   3. Current code base was not very well organised and trying to add more feature
+      it had become messy.
+   4. Provide XEP support to help in data collections
+
+Few changes which are already implemented include
+   1. New code is now using *pyxmpp2* library instead of GPLed *xmppy* used by current 
+      code.
+   2. Implemented XEP-0071 extension to properly format the meaning display by the bot
+   3. Current implementation was displaying all words in one set without distinguishing
+      between adjectives,verbs proverbs etc. even though wiktionary displays meaning based
+      on this. New implementation gives out meaning in same format as it is displayed on
+      wiktionary.
+      
+Things remaining todo
+   1. Separating wiktionary parsing logic from bot code by providing some sort of intermediate
+      interface between bot and wiktionary parsers.
+   2. Adding more language wiktionary parsers and teaching the bot to become multilingual :-)
+   3. Integrating XEP-0004 (Data Forms) for taking the meaning input from user. Current code
+      requires user to enter data in particular format
+
+#### suckless-tools fix for Wheezy ####
+
+*Jakub Wilk* suggested me to prepare a minimal version of suckless-tools for Wheezy which includes
+a patch to the bug [#685611](http://bugs.debian.org/685611). And few minor changes which involve
+taking over the package and fixes in copyright file other than above mentioned bug. Hopefully 
+release-team will be okay with these changes. I'm waiting for the upload to file an unblock-request.
+
+I did face a problem I was halfway through wit suckless-tools_39-1 when Jakub asked me about this
+change and current repository was fresh one prepared for 39-1 and didn't have history for 38 version.
+First I thought of preparing separate repository for 38 version which was not an correct option,
+but I even couldn't play with current repository. So finally I renamed current version of repository
+to suckless-tools-39.git on collab-maint and prepared fresh repository suckless-tools.git basing
+it on 38-1 version. 
+
+From 39 version suckless-tools will be following 3.0 (quilt) source format and will not be working
+with git-buildpackage as the tool can't handle multi-tarball packages. Yes every tool involved in
+the package will have separate tarball from 39.
+
+#### More work on Bots ####
+
+Well today I again worked on Jabber bot, but not the dictionary bot. This time its an SMS Gateway
+bot for *Jonas Smedegard* and the coding was done in Perl. Thanks to jonas I finally could apply
+what I learnt in Perl. Code may not be very elegant but it works :-).
+
+And after hacking one full day in Perl now I'm not feeling very much interested to go back and 
+hack on my own Python based dictionary bot :-). But I will anyway.
+
+#### Misc ####
+
+* fonts-kalapi has been uploaded to *unstable* by Kartik finally :-). Only sad part is he couldn't
+  use the home grown dh-make-font for this purpose.
+* Finally Kartik is here in Bangalore and I'm just waiting when I can meet him.
+* I ordered a RaspberryPi once it comes some hacking will be done on boxer again :-)
+* Watched couple of *Star Wars* movie :-) (Still have 4 left)
+* Expendables 2 movie is in watch list after this post.
+
+So that's it folks. Quite longish post hope you are not bored reading it :-). Well time for movie
+C'ya all with next weeks log.
+
+
