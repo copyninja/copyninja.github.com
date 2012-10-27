@@ -4,31 +4,26 @@ layout: nil
 permalink: /atom/index.xml
 
 ---
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
- 
-  <title>{{site.url}}</title>
-  <link href="{{site.url}}/"/>
-  <link type="application/atom+xml" rel="self" href="{{site.url}}/atom.xml"/>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id>{{site.url}}/</id>
-  <author>
-    <name>Vasudev Kamath</name>
-    <email>kamathvasudev at gmail dot com</email>
-  </author>
 
-  {% for post in site.posts %}
-  <entry>
-    <id>{{site.url}}{{ post.id }}</id>
-    <link type="text/html" rel="alternate" href="{{site.url}}{{ post.url }}"/>
-    <title>{{ post.title }}</title>
-    <updated>{{ post.date | date_to_xmlschema }}</updated>
-    <author>
-      <name>Vasudev Kamath</name>
-      <uri>{{site.url}}/</uri>
-    </author>
-    <content type="html">{{ post.content | xml_escape }}</content>
-  </entry>
-  {% endfor %}
- 
+<title type="text" xml:lang="en">{{ site.root_desc }}</title>
+<link type="application/atom+xml" href="http://copyninja.info/atom/" rel="self"/>
+  <link type="text/html" href="http://copyninja.info" rel="alternate"/>
+<updated>{{ site.time | date_to_xmlschema }}</updated>
+<id>http://copyninja.info</id>
+<author>
+<name>Vasudeva Kamath</name>
+</author>
+<rights>Copyright (c) 2012, Vasudeva Kamath; all rights reserved.</rights>
+
+{% for post in site.posts limit:20 %}
+<entry>
+<title>{{ post.title }}</title>
+<link href="http://copyninja.info{{ post.url }}"/>
+<updated>{{ post.date | date_to_xmlschema }}</updated>
+<id>http://copyninja.info{{ post.id }}</id>
+<content type="html">{{ post.content | xml_escape }}{% include rss_footer.html %}</content>
+</entry>
+{% endfor %}
 </feed>
