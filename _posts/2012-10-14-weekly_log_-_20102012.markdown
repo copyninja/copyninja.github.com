@@ -1,0 +1,110 @@
+---
+layout: post
+title: "Weekly Log - 20/27-102012"
+date: "2012-10-14 23:01:58 +0530"
+tags:
+ - Debian
+ - weeklylog
+ - floss
+ - life
+---
+
+This week decided to write the log from the beginning of the week itself as
+I don't want to miss any tasks done. So here comes the list. Also I merged 2 weeks
+log together not because I didn't do much but recently I was being bit lazy :-P
+
+Debian Related
+--------------
+
+* Some more fixes done to suckless-tools 38 version as per comments
+  from Jakub Wilk
+* After some poking from Intrigeri (my AM) I finally placed the new 
+  38-2 related stuffs in Wheezy branch of suckless-tools.git which
+  I originally prepared for 39 version
+* After few minor fixes Jakub Wilk has uploaded 38-2 and thus I kill
+  one more RC bug for wheeze [<strike>#685611</strike>](http://bugs.debian.org/685611). Well my AM has given me clue that
+  more RC bugs might be coming my way as part of NM process and I'm waiting :-)
+* More clarifications on my answers on Philosophy and Procedures - 1
+  were sent back and I need to give some more again ;-). Will do that probably
+  on Sunday
+* Fixed issues in installing fontconfig files in font packages *fonts-beng-extra*
+  and *fonts-smc* no bugs were filed though. fonts-smc can't be uploaded to unstable
+  for sure as it contains a udeb (fonts-mlym-udeb). Kartik told he will discuss
+  with release-team about fonts-beng-extra but I guess he forgot ;-).
+* Helped new guys to learn Debian packaging on #debian-diaspora, initiative started by
+  Praveen Arimbrathodiyil who actually taught me the packaging. Idea is to package Diaspora.
+  Even though I'm not much interested in Diaspora I'm helping there as Praveen is my good
+  friend and mentor and in a way I want to increase contributors to Debian.
+* Started working on suckless-tools 39 fixed few minor issues now seeing a hardening issue
+  which I need to fix before each can be safely uploaded to experimental.
+  
+
+
+Python Based
+------------
+
+* Fixed the Unicode comparison issue in the charmap.py from the soundex Python
+  module. Basically when both side of *==* operator are not of Unicode type the
+  Python considers them to be unequal even if they are equal. Well this is the
+  encoding pain in Python versions less than 3. Now this is handled in 0.3 version
+  of soundex.
+* Spellchecker module is now having Marathi language support but it doesn't seems
+  to be working fine so 0.3 version is not yet completely done.
+* Guess Language module from SILPA is now separate module and is uploaded to pypi,
+  though its integration with SILPA rewritten in Flask is pending.
+* Replaced the pyxmpp2 module used in the dictionary bot to sleekxmpp as it already
+  supports XEP's which I plan to use in the bot
+* Fine tuned  the parsing and returning logic of dictionary-bot and integrated language
+  guessing support.
+* Inspired by Jonas's coding on smsg I also modified the code so that if needed it
+  can be easily packaged and also can be tested without need to actually installing it.
+* Added logging functionality to the dictionary bot but yet to log actual data from the
+  bot so that can be analysed later
+  
+Few more details on dictionary-bot needs to be sorted out to make it production ready
+and I'm not getting enough time to do so. May be I should write down TODO's some where
+so I won't loose track of it.
+
+
+Perl Based
+----------
+
+Not much tasks were done on Perl but I managed to help Jonas to sort out an important issue
+which was a show stopper for using smsg in the performance he is attending in Zurich. Below
+are tasks done
+
+* Moved the Jabber.pm code which was using *AnyEvent::XMPP::Client* to Client.pm which inherits
+  from Jabber.pm, basically idea is create one ore class Connection which uses *AnyEvent::XMPP::Connection*
+  which can be used to connect send message and disconnect. Did you see *inherit* don't be surprised
+  thanks to Jonas I had to learn bit about Moo :-)
+* Slightly modified HttpSend.pm command to send the message to Jabber chat room, this was the
+  show stopper for smsg. And after this fix Jonas happily used it in his theatre performance in
+  Zurich.
+
+
+Wildfire Liberation
+-------------------
+
+I struggled almost 3 days to get my HTC Wildfire liberated from HTC stock OS. I got to know about
+[HTC Developers Site](http://htcdev.com) with which HTC officially allows the unlocking the bootloader.
+After unlocking I was not sure on how to get ClockworkMod Recovery in my device and get root the
+tools mentioned in different places, *revolutionary* and *unrevoked* were not happy with my new
+HBOOT version 1.02.0000 after struggling a bit I managed to manually download the ClockworkMod
+for Wildfire from this [site](http://downloads.unrevoked.com/recoveries/cwm-4.0.1.4-buzz.img) but then
+again I was afraid of bricking my phone. But thanks to [Jishnu's](https://twitter.com/jishnu7) timely advice I managed to flash
+my device and install CM7. Now I enjoy my 2 year old Wildfire!
+
+For those who want to flash their Wildfire with HBOOT version 1.02.0000 please follow the **Method via HTC website** section
+[here](http://wiki.cyanogenmod.com/wiki/HTC_Wildfire:_Full_Update_Guide).
+
+
+Misc
+----
+
+* Met Kartik on 20th wanted to have a mini BSP but we got lost in talking as we met after one year
+* Watched few bunch of movie. This week was bit short as in between the week 3 holidays came due
+  to festivals.
+  
+Well that is it for the 2 weeks hopefully I will see ya on next week :-) or next to next if I merge
+my weekly logs again ;-). Till then Cya.
+
