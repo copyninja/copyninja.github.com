@@ -15,7 +15,7 @@ layout: default
 <div id="related">
   <h2>Related Posts</h2>
   <ul class="posts">
-    {% for post in site.posts limit:5 %}
+    {% for post in site.posts limit:3 %}
     {% for postag in post.tags %}
     {% for pagetag in page.tags %}
     {% if postag == pagetag and post.title != page.title %}
