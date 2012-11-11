@@ -1,0 +1,52 @@
+---
+layout: post
+title: "Weekly Log - 27/3 - 112012"
+date: "2012-11-11 13:34:52 +0530"
+tags:
+ - Debian
+ - weeklylog
+ - floss
+ - life
+---
+
+OK I became again lazy to log my works and combined 2 weeks again :-).
+Most of my work is for Debian for this 2 weeks.
+
+* More reviews from Jakub on suckless-tools and more fixing :-). This time Jakub
+  identified that ssid is not at all different the setsid from utils-linux package
+  which resulted in me writing to Anselm Garbe of suckless project, who told that
+  first reason for writing ssid was setsid code during that time[1] which really does
+  suck. He agreed to obsolete the ssid project after some clarifications.
+* After mail to Conor Lane Smith upstream author of sprop and then writing to Anselm, 
+  sprop now has finally is placed under dl.suckless.org/tools which means I don't need
+  to refer to Mercurial tip anymore.
+* *fonts-deva-extra* is no more containing the *Gargi* and *Sarai* fonts as both fonts
+  have got upstream and now will be part of *fonts-gargi* and *fonts-sarai*. I'm now 
+  reviewing fonts-gargi which is being packaged by  Jishnu. To be frank I'm loving the
+  review process ;-).
+* After a while I again worked on friendica package for Debian and after fixing a stupid
+  mistake by me I released a version of package for testing as I run my friendica on my
+  laptop itself. I did try piuparts for testing but couldn't get it working. After testing
+  I got positive feedback from the fellow friendicans [2][3]. Note that [2] will be available
+  only if my laptop is online :-). Now I need to try and automate installation of webserver
+  confs I know might not be good idea but my idea is making friendica installation on Freedombox
+  without any hassle. Of course suggestions are welcome :-) package source is at [4]
+* I got a grave bug filed on suckless-tools [#692737](http://bugs.debian.org/692737) which 
+  of course can't be taken as security hole directly in fact it was a feature of slock which
+  later got  modified later by user patches. After talking with person who filed bug who actually
+  said he is not interested in getting it for Wheezy I reduced severity to important. To be
+  frank this feature is part of 39 version of suckless-tools but change is too much to include
+  it in Wheezy and I was not interested in making another version of suckless-tools I already 
+  made 38-2 for wheezy fixing important bug, filed by Jakub.
+
+This week was bit hectic I couldn't dedicate much time for any programming. This week I'm on vacation
+and will get more time to work on FLOSS and other coding stuffs. Only that I'm on slow network
+connection :-). Ok cya next week (hopefully)
+
+PS: My last weekly log never showed up in planet.d.o not sure what happened may be because I
+played with feed generating jekyll scripts. Hope this will show up in planet.d.o
+
+[1] http://code.metager.de/source/xref/linux/utils/util-linux/sys-utils/setsid.c <br/>
+[2] http://vasudev.homelinux.net/display/copyninja/34241 <br/>
+[3] https://kakste.com/display/beardyunixer/974150 <br/>
+[4] anonscm.debian.org/gitweb/?p=collab-maint/friendica.git;a=summary <br/>
