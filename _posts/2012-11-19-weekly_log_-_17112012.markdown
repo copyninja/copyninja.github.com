@@ -1,0 +1,67 @@
+---
+layout: post
+title: "Weekly Log - 17/23 - 112012"
+date: "2012-11-19 20:37:30 +0530"
+tags:
+- Debian
+- floss
+- weeklylog
+- life
+---
+
+The last week was quite productive as I was on vacation and at home town but sadly I
+couldn't complete this post so again merging the work with this week but this week ain't
+much productive as I was tired from journey back and didn't get enough time to recover.
+So here it goes.
+
+Debian Related
+--------------
+
+* I did a little more fine tuning of friendica package to enable http://localhost/friendica
+  on installation and shipped virtual host configuration for Apache and Nginx which user
+  can simply copy to setup a proper friendica instance. I'm not sure if this is right to do
+  or not but Drupal package does this but only it doesn't enable it during installation and
+  leaves it up to user to create required symlink to enable http://localhost/drupal7. Well this
+  is my first time in packaging webapp so I'm all open for suggestions
+* Helped Tobias Diekershoff prepare and upload the friendica package to mentors and file RFS bug.
+  We got bug number [#693504](http://bugs.debian.org/693504) and now we are looking for sponsors,
+  if you are a DD reading this post and interested in federated social networking and can sponsor
+  us it would be great :-)
+* Started learning CDBS and converted the Kiwix package to CDBS. I'm glad that Jonas is helping me
+  out when I'm struck some where. Also kiwix is now updated to latest version 0.9~rc2 and I need
+  to do some more fine tuning before asking for upload from Jonas.
+* I started helping Jonas to put up CDBS documentation. He suggested me to take over the documentation
+  from duckcorp and then merge other documentation in CDBS git tree. As of now I only managed to
+  separate out the chapters from docbook to markdown format. The conversion was done using *pandoc*
+  but code formatting in docbook was not proper I guess so after conversion it needed some manual
+  intervention in fixing and formatting code blocks. The repository for CDBS doc is [here](http://anonscm.debian.org/gitweb/?p=collab-maint/cdbs-doc.git;a=summary)
+  and as of now doesn't contain any new things.
+* Converted one more of my font package fonts-gubbi to CDBS format but I'm now facing a issue that
+  CDBS is including docs inside the generated udeb which is not right, I already posted the question
+  on how to handle this to *build-common-hackers* and waiting for Jonas to reply back.
+* I claimed the ITP [#651600](http://bugs.debian.org/651600) on Roboto fonts from Android OS. After
+  a short discussion with Fabian on pkg-fonts-devel I agreed to merge it with existing *fonts-droid* and
+  renamed the source package to *fonts-android* which now builds *fonts-droid* and *fonts-roboto*. Package
+  is ready but I'm still seeing if I can fix any bugs on *fonts-droid* before asking for a upload. 
+* Wrote a simple script which was derived from droid fonts package from Fedora to get the android fonts
+  from the upstream repository automatically. Enabled this in get-orig-source target for fonts-android.
+  Since cloning a more than 600M repository is PITA I have a local copy of fonts-android and use it to
+  create new release of fonts-android. Additionally I should say script is not well tested ;-)
+* *suckless-tools* has entered into Debian Experimental thanks to Jakub Wilk for a very nice review of
+  the package which went in a long thread of more than 50 mails in debian-mentors. The package itself 
+  closed a shit load of bugs, but after upload I noticed there are still some pending bugs which I missed
+  from adding to changelog. So I closed <strike>[#606148](http://bugs.debian.org/606148)</strike> and 
+  <strike>[#689199](http://bugs.debian.org/689199)</strike>. Still there are 2 more bugs which seems
+  like fixed in newer version but I need to confirm before closing them, thus making suckless-tools
+  a bug free package.
+
+Upstream Related
+----------------
+
+I raised a pull request [#8](https://github.com/aravindavk/Gubbi/pull/8) on Gubbi fixing the Makefile
+to more organized and introducing xz compression in it. Additionally I removed distribution specific
+stuffs from Makefile and made it generic.
+
+That's all for the two weeks. This week there will be [foss.in](http://foss.in) and we will be having
+some Debian specific mini conference, including some Debian basics to newbies and some bug squashing
+if any :-). So more to report next week, till then Cya.
