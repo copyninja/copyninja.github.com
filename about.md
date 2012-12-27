@@ -59,10 +59,10 @@ Facebook account. Want to know why? This is not right place to discuss
 you can contact me privately You can find me on Friendica you can
 connect to me through identi.ca Below are my details
 
-<blockquote>
+<pre>
  Friendica: copyninja @ { frndk.de | vasudev.homelinux.net }<br/>
- Identi.ca: vasudev @ identi.ca<br/>
+ Identi.ca: copyninja @ identi.ca<br/>
  GPG Finger Print: C517 C25D E408 759D 98A4  C96B 6C8F 74AE 8770 0B7E<br/>
- Twitter: vasudevkamath (Not used much)<br/>
-</blockquote>
+ Twitter: copyninja (Not used much)<br/>
+</pre>
 
