@@ -60,9 +60,9 @@ you can contact me privately You can find me on Friendica you can
 connect to me through identi.ca Below are my details
 
 <pre>
- Friendica: copyninja @ { frndk.de | vasudev.homelinux.net }<br/>
- Identi.ca: copyninja @ identi.ca<br/>
- GPG Finger Print: C517 C25D E408 759D 98A4  C96B 6C8F 74AE 8770 0B7E<br/>
- Twitter: copyninja (Not used much)<br/>
+ Friendica: copyninja @ { frndk.de | vasudev.homelinux.net }
+ Identi.ca: copyninja @ identi.ca  (Not used much)
+ GPG Finger Print: C517 C25D E408 759D 98A4  C96B 6C8F 74AE 8770 0B7E
+ Twitter: copyninja (Not used much)
 </pre>
 
