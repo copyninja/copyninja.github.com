@@ -76,11 +76,18 @@ The above package installs all the cross compilation tools required
 beginning with prefix *arm-linux-gnueabi-* but it doesn't create a
 required symlink /usr/bin/arm-linux-gnueabi-gcc pointing to
 /usr/bin/arm-linux-gnueabi-gcc-4.7 which is required by all tools for
-cross compiling just create this symlink manually and you should have
-GNU cross compiler ready on your system for
-*[armel](http://wiki.debian.org/ArmEabiPort* architecture.
+cross compiling, add an alternative using following commands to fix
+the issue in the package tools<strike> just create this symlink
+manually</strike> and you should have GNU cross compiler ready on your
+system for [armel](http://wiki.debian.org/ArmEabiPort architecture.
 
-    ln -s /usr/bin/arm-linux-gnueabi-gcc-4.7 /usr/bin/arm-linux-gnueabi
+*Thanks to [zumbi](http://emdebian.org/~zumbi) for pointing out the write way to fix the package*
+
+    sudo update-alternatives --install /usr/bin/arm-linux-gnueabi-gcc arm-linux-gnueabi-gcc /usr/bin/arm-linux-gnueabi-gcc-4.7 46 
+               --slave /usr/bin/arm-linux-gnueabi-g++ arm-linux-gnueabi-g++ /usr/bin/arm-linux-gnueabi-g++-4.7 
+               --slave /usr/bin/arm-linux-gnueabi-gcov arm-linux-gnueabi-gcov /usr/bin/arm-linux-gnueabi-gcov-4.7
+               --slave /usr/bin/arm-linux-gnueabi-gfortran arm-linux-gnueabi-gfortran /usr/bin/arm-linux-gnueabi-gfortran-4.7
+
     
 Now to cross compile all you need to do is
 
