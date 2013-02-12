@@ -20,6 +20,14 @@ me and Jonas agreed to convert the existing CDBS documentation.
 So this blog will act as a documentation and these post will be then
 altered modified and put back into a proper CDBS documentation later.
 
+<strike>
 I know many people don't like CDBS and most of it because there is no
 proper documentation, so I'm trying to improve the situation so sit
 back and enjoy the upcoming posts :-).
+</strike>
+
+OK I was sloppy in giving theory on what others think about the CDBS
+thanks to [Phill Hands](http://www.hands.com/~phil/) and Jonas for
+enlightening me. So with these series I'm just trying to explain CDBS
+features with real examples and examples how you can tame nasty
+packaging beasts with CDBS easily.
