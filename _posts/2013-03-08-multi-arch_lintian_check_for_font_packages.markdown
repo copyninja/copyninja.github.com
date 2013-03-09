@@ -9,9 +9,10 @@ tags:
 - multi-arch
 ---
 
-I've provided a new patch for lintian to warn about font packages that
-are not marked as *Multi-Arch foreign or allowed*. Its already
-included in the lintian by *Neils Thykier* and will be part of version
+I've provided a new patch [#701061](http://bugs.debian.org/701061) for
+lintian to warn about font packages that are not marked as *Multi-Arch
+foreign or allowed*. Its already included in the lintian by *Neils
+Thykier* and will be part of version
 *2.5.12*. The following tag has been implemented
 
     font-package-not-multi-arch-foreign
