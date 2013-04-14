@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "Replacing symbols which vary over different architecture using script"
-date: "2013-04-14 18:35:31 +0530"
+title: "Handling C++ symbols that vary across architectures"
+date: "2013-04-14 18:45:25 +0530"
 tags:
 - Debian
 - packaging
