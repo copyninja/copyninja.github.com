@@ -23,7 +23,7 @@ permalink: /atom/index.xml
 <link href="http://copyninja.info{{ post.url }}"/>
 <updated>{{ post.date | date_to_xmlschema }}</updated>
 <id>http://copyninja.info{{ post.id }}</id>
-<content type="html">{{ post.content | xml_escape }}{% include rss_footer.html %}</content>
+<content type="html">{{ post.content | xml_escape }}</content>
 </entry>
 {% endfor %}
 </feed>
