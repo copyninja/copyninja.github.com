@@ -3,16 +3,17 @@ description: Random thoughts shooting out of volatile mind
 url: http://copyninja.info
 
 safe: false
-auto: false
-
+baseurl: /
 
 source: .
 destination: ./_site
 plugins: ./_plugins
+layouts: ./_layouts
 
-future:      true
-lsi:         false
-pygments:    true
-markdown:    rdiscount
+future: true
+lsi: false
+pygments: true
+markdown: rdiscount
 
 permalink: /:year/:month/:title.html
+relative_permalink: false
